@@ -60,6 +60,19 @@ function openReader() {
     scrollToTop();
 }
 
+
+const addToFlashcards = (word) => {
+    const lsFlashcards = localStorage.getItem("lsFlashcards") || `[]`;
+    const flashcardsArr = JSON.parse(lsFlashcards);
+    if (flashcardsArr.indexOf(word) === -1) {
+        flashcardsArr.push(word);
+        localStorage.setItem("lsFlashcards", JSON.stringify(flashcardsArr));
+    }
+
+    const addToFlashCardIcon = document.getElementById('addToFlashCardIcon');
+    addToFlashCardIcon.innerHTML = `<object data="./assets/icons/done.svg" type="image/svg+xml">
+</object>`;
+}
 // let sentenceIndex = -1;
 // let sentenceArr = [];
 const voices = speechSynthesis.getVoices();
@@ -189,6 +202,9 @@ async function renderWikiPage(word) {
         });
         const header = body.getElementsByTagName("header")[0];
         header.classList.add("notranslate");
+        header.innerHTML += `<div id="addToFlashCardIcon" onclick="addToFlashcards('${word}')"><object data="./assets/icons/add to flashcards.svg" type="image/svg+xml">
+        <img src="yourfallback.jpg" />
+      </object></div>`;
         const frenchHeadline = body.querySelector("#French");
         if (frenchHeadline) {
             const frenchSection = frenchHeadline.closest("section");
