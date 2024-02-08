@@ -17,7 +17,7 @@
 
         #lalalangHeader {
             background: #0c1c2c;
-            padding: 20px;
+            padding: 14px;
             box-shadow: 0 4px 2px -1px rgba(0, 0, 0, 0.2);
             box-sizing: border-box;
             position: sticky;
@@ -42,11 +42,12 @@
         }
 
         #lalalangHeader #homeIcon {
-            font-size: 22px;
+            font-size: 17px;
+            font-weight: 600;
         }
 
-        #derivedterms {
-            background-color: #000 !important;
+        .derivedterms {
+            background-color: inherit !important;
         }
 
         textarea {
@@ -120,7 +121,7 @@
             width: 100%;
             position: fixed;
             bottom: 0;
-            padding: 20px;
+            padding: 17px;
             font-size: 20px;
             margin: 0;
             border-radius: 0;
@@ -179,7 +180,7 @@
         .collapsible-container {
             background-color: #0c1c2c;
             margin-bottom: 10px;
-            --before-content: '+';
+            border-radius: 4px;
         }
 
         .collapsible-heading {
@@ -187,12 +188,12 @@
             padding: 10px;
             cursor: pointer;
             font-weight: 600;
-
+            border-bottom: 2px solid dimgrey;
         }
 
         .collapsible-content {
             display: none;
-            padding: 10px;
+            padding: 14px;
             overflow: hidden;
         }
     </style>
@@ -216,7 +217,7 @@
         </div>
         <div id="storiesContainer"></div>
     </div>
-    <div id="translationDiv" class="m-x-20 p-20">
+    <div id="translationDiv" class="m-x-20">
         <div class="notranslate sentenceText" id="learningLangText"></div>
         <div class="sentenceText" id="knownLangText"></div>
 
@@ -231,7 +232,8 @@
             </div>
         </div>
         <div class="collapsible-container">
-            <div class="collapsible-heading" onclick="toggleCollapsible('collapsibleDictionaryMap')">+ Word by word browser
+            <div class="collapsible-heading" onclick="toggleCollapsible('collapsibleDictionaryMap')">+ Word by word
+                browser
                 translation
             </div>
             <div id="collapsibleDictionaryMap" class="collapsible-content">
