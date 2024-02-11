@@ -24,6 +24,8 @@
             top: 0;
             width: 100%;
             z-index: 1;
+            display: flex;
+            justify-content: space-between;
         }
 
         button {
@@ -197,25 +199,36 @@
             overflow: hidden;
         }
 
-        #wikiPage header {
+        .wikiPage header {
             display: flex;
             align-items: center;
         }
 
-        #wikiPage .pcs-edit-section-header {
+        .wikiPage .pcs-edit-section-header {
             flex-grow: 1;
         }
 
-        #wikiPage #addToFlashCardIcon {
+        .wikiPage .wikiPageActionIcon {
             flex-basis: 30%;
             text-align: center;
             font-size: 25px;
         }
 
-        #wikiPage #addToFlashCardIcon object{
+        .wikiPage .wikiPageActionIcon object,
+        #flashcardsIcon object {
             width: 34px;
             height: 34px;
             pointer-events: none;
+        }
+
+        #flashcardsContainer {
+            margin: 14px;
+            background: #0c1c2c;
+            padding: 14px;
+            border-radius: 4px;
+            height: calc(100vh - 190px);
+            overflow-y: scroll;
+            overflow-x: hidden;
         }
     </style>
     <script src="stories.js"></script>
@@ -229,6 +242,10 @@
                 <span>La</span>
             </div>
             <div><span>La</span><span class="color-gold">ng</span></div>
+        </div>
+        <div id="flashcardsIcon" class="cp">
+            <object data="./assets/icons/flashcards.svg" width="34px" type="image/svg+xml">
+            </object>
         </div>
     </header>
     <div id="homeContainer">
@@ -246,7 +263,7 @@
             <div class="collapsible-heading" onclick="toggleCollapsible('collapsibleWikitionary')">+ Wikitonary
             </div>
             <div id="collapsibleWikitionary" class="collapsible-content">
-                <div id="wikiPage" class="notranslate">
+                <div id="wikiPage" class="notranslate wikiPage">
                     Click on a word to see its Wikitonary page.
                 </div>
 
@@ -263,7 +280,9 @@
         </div>
         <!-- <div id="dictionaryMap"></div> -->
     </div>
-    <button onclick="extractWords()" id="nextBtn">Next</button>
+    <div id="flashcardsContainer" class="notranslate wikiPage">
+    </div>
+    <button id="nextBtn">Next</button>
 
     <!-- <div id="voices"></div> -->
 

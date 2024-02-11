@@ -1,10 +1,14 @@
 // const inputDiv = document.getElementById("inputDiv");
 const homeContainer = document.getElementById("homeContainer");
 const translationDiv = document.getElementById("translationDiv");
+const flashcardsContainer = document.getElementById("flashcardsContainer");
 const nextBtn = document.getElementById("nextBtn");
 const homeIcon = document.getElementById("homeIcon");
+const flashcardsIcon = document.getElementById("flashcardsIcon");
+let displayId = 'HOME'; // HOME, STORY, FLASHCARDS
 
 homeIcon.addEventListener("click", resetToHome);
+flashcardsIcon.addEventListener("click", openFlashcards);
 
 function scrollToTop() {
     document.body.scrollTop = 0; // For Safari
@@ -50,6 +54,8 @@ function resetToHome() {
     homeContainer.style.display = "block";
     translationDiv.style.display = "none";
     nextBtn.style.display = "none";
+    flashcardsContainer.style.display = "none";
+    displayId = 'HOME';
     scrollToTop();
 }
 
@@ -57,7 +63,34 @@ function openReader() {
     homeContainer.style.display = "none";
     translationDiv.style.display = "block";
     nextBtn.style.display = "block";
+    flashcardsContainer.style.display = "none";
+    displayId = 'STORY';
     scrollToTop();
+}
+
+function openFlashcards() {
+    homeContainer.style.display = "none";
+    translationDiv.style.display = "none";
+    nextBtn.style.display = "block";
+    flashcardsContainer.style.display = "block";
+    displayId = 'FLASHCARDS';
+    scrollToTop();
+    renderFlashcardWord();
+}
+
+const renderFlashcardWord = () => {
+    const lsFlashcards = localStorage.getItem("lsFlashcards") || `[]`;
+    const flashcardsArr = JSON.parse(lsFlashcards);
+
+    const word = flashcardsArr[Math.floor(Math.random() * flashcardsArr.length)];
+
+    console.log(word);
+    if (word) {
+        renderWikiPage(word, true)
+    } else {
+        flashcardsContainer.innerHTML = 'Add words to flashcards';
+    }
+
 }
 
 
@@ -69,9 +102,27 @@ const addToFlashcards = (word) => {
         localStorage.setItem("lsFlashcards", JSON.stringify(flashcardsArr));
     }
 
-    const addToFlashCardIcon = document.getElementById('addToFlashCardIcon');
-    addToFlashCardIcon.innerHTML = `<object data="./assets/icons/done.svg" type="image/svg+xml">
+    const wikiPageActionIcon = document.querySelector('.wikiPageActionIcon');
+    wikiPageActionIcon.innerHTML = `<object data="./assets/icons/done.svg" type="image/svg+xml">
 </object>`;
+}
+
+const removeFromFlashcard = (word) => {
+    const lsFlashcards = localStorage.getItem("lsFlashcards") || `[]`;
+    const flashcardsArr = JSON.parse(lsFlashcards);
+
+    const wordIndex = flashcardsArr.indexOf(word);
+    if (wordIndex > -1) { // only splice array when item is found
+        flashcardsArr.splice(wordIndex, 1); // 2nd parameter means remove one item only
+    }
+
+    localStorage.setItem("lsFlashcards", JSON.stringify(flashcardsArr));
+    console.log(flashcardsArr);
+
+    const wikiPageActionIcon = document.querySelector('#flashcardsContainer .wikiPageActionIcon');
+    wikiPageActionIcon.innerHTML = `<object data="./assets/icons/add.svg" type="image/svg+xml">
+</object>`;
+wikiPageActionIcon.addEventListener('click', () => addToFlashcards(word))
 }
 // let sentenceIndex = -1;
 // let sentenceArr = [];
@@ -179,9 +230,12 @@ function extractWords() {
 
 const learningLangDiv = document.getElementById("learningLangText");
 
-async function renderWikiPage(word) {
+async function renderWikiPage(word, isFlashcard = false) {
     toggleCollapsible('collapsibleWikitionary', true);
-    const wikiPage = document.getElementById("wikiPage");
+    let wikiPage = document.getElementById("wikiPage");
+    if (isFlashcard) {
+        wikiPage = flashcardsContainer;
+    }
     wikiPage.innerHTML = "Loading...";
     const response = await fetch(
         `https://en.wiktionary.org/api/rest_v1/page/mobile-html/${word}`
@@ -202,13 +256,23 @@ async function renderWikiPage(word) {
         });
         const header = body.getElementsByTagName("header")[0];
         header.classList.add("notranslate");
-        header.innerHTML += `<div id="addToFlashCardIcon" onclick="addToFlashcards('${word}')"><object data="./assets/icons/add to flashcards.svg" type="image/svg+xml">
+        const headerIconAction = isFlashcard ? 'removeFromFlashcard' : 'addToFlashcards';
+        const headerIcon = isFlashcard ? 'delete' : 'add';
+        header.innerHTML += `<div  class="wikiPageActionIcon" onclick="${headerIconAction}('${word}')"><object data="./assets/icons/${headerIcon}.svg" type="image/svg+xml">
         <img src="yourfallback.jpg" />
       </object></div>`;
         const frenchHeadline = body.querySelector("#French");
         if (frenchHeadline) {
             const frenchSection = frenchHeadline.closest("section");
             frenchSection.classList.add("notranslate");
+
+            if (isFlashcard) {
+                frenchSection.classList.add("blurText");
+
+                frenchSection.addEventListener("click", () => {
+                    frenchSection.classList.remove("blurText");
+                });
+            }
             const audios = frenchSection.getElementsByTagName("audio");
             if (audios?.[0]) {
                 let audioLink = audios[0].getAttribute("resource");
@@ -247,4 +311,12 @@ const knownLangText = document.getElementById("knownLangText");
 
 knownLangText.addEventListener("click", () => {
     knownLangText.classList.remove("blurText");
+});
+
+nextBtn.addEventListener("click", () => {
+    if (displayId = 'FLASHCARDS') {
+        renderFlashcardWord();
+    } else {
+        extractWords();
+    }
 });
