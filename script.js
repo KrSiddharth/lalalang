@@ -122,7 +122,7 @@ const removeFromFlashcard = (word) => {
     const wikiPageActionIcon = document.querySelector('#flashcardsContainer .wikiPageActionIcon');
     wikiPageActionIcon.innerHTML = `<object data="./assets/icons/add.svg" type="image/svg+xml">
 </object>`;
-wikiPageActionIcon.addEventListener('click', () => addToFlashcards(word))
+    wikiPageActionIcon.addEventListener('click', () => addToFlashcards(word))
 }
 // let sentenceIndex = -1;
 // let sentenceArr = [];
@@ -314,7 +314,7 @@ knownLangText.addEventListener("click", () => {
 });
 
 nextBtn.addEventListener("click", () => {
-    if (displayId = 'FLASHCARDS') {
+    if (displayId === 'FLASHCARDS') {
         renderFlashcardWord();
     } else {
         extractWords();
