@@ -5,7 +5,24 @@ const flashcardsContainer = document.getElementById("flashcardsContainer");
 const nextBtn = document.getElementById("nextBtn");
 const homeIcon = document.getElementById("homeIcon");
 const flashcardsIcon = document.getElementById("flashcardsIcon");
+const appContainer = document.getElementById("appContainer");
+const setupScreen = document.getElementById('setupScreen');
 let displayId = 'HOME'; // HOME, STORY, FLASHCARDS
+
+
+appContainer.style.display = "none";
+
+// check whether browser translation has been turned on
+const browserTranslationCheckInterval = setInterval(() => {
+    const browserTranslationEnabledTestText = document.getElementById("browserTranslationEnabledTestText");
+    console.log('checking browser translation', browserTranslationEnabledTestText.innerText.toLocaleLowerCase())
+    if (browserTranslationEnabledTestText.innerText.toLocaleLowerCase() === 'hello') {
+        appContainer.style.display = "block";
+        setupScreen.style.display = "none";
+        clearInterval(browserTranslationCheckInterval)
+        init();
+    }
+}, 1000)
 
 homeIcon.addEventListener("click", resetToHome);
 flashcardsIcon.addEventListener("click", openFlashcards);
@@ -42,7 +59,7 @@ const tilesHTML = laLaLangStories.reduce((acc, curr, index) => {
                   <div>
                     <img src="${curr.imgUrl}" />
                   </div>
-                  <div class="m-y-10">${curr.title.toLowerCase()}</div>
+                  <div class="m-y-10 notranslate">${curr.title.toLowerCase()}</div>
                 </div>`
     );
 }, "");
@@ -124,34 +141,40 @@ const removeFromFlashcard = (word) => {
 </object>`;
     wikiPageActionIcon.addEventListener('click', () => addToFlashcards(word))
 }
-// let sentenceIndex = -1;
-// let sentenceArr = [];
+
 const voices = speechSynthesis.getVoices();
 let voice;
+let sentenceIndex = -1;
+let sentenceArr = [];
 
-const lsSentenceArr = localStorage.getItem("lsSentenceArr") || `[]`;
-let sentenceArr = JSON.parse(lsSentenceArr);
+const init = () => {
+    const lsSentenceArr = localStorage.getItem("lsSentenceArr") || `[]`;
+    sentenceArr = JSON.parse(lsSentenceArr);
 
-let sentenceIndex = localStorage.getItem("lsSentenceIndex") || -1;
+    sentenceIndex = localStorage.getItem("lsSentenceIndex") || -1;
 
-if (sentenceArr.length) {
-    --sentenceIndex;
-    extractWords();
-    openReader();
-} else {
-    resetToHome();
+    if (sentenceArr.length) {
+        --sentenceIndex;
+        extractWords();
+        openReader();
+    } else {
+        resetToHome();
+    }
 }
 
 speechSynthesis.onvoiceschanged = () => {
-    console.log("voices changed");
     const voices = speechSynthesis.getVoices();
+    console.log(voices);
+    const prefferedVoiceNames = ['Microsoft Henri Online (Natural) - French (France)', 'Microsoft Paul - French (France)'];
     voice = voices.find(
-        (v) => v.name === "Microsoft Henri Online (Natural) - French (France)"
+        (v) => prefferedVoiceNames.indexOf(v.name) !== -1
     );
 
     if (!voice) {
-        voice = voices.find((v) => v.lang === "fr_FR");
+        voice = voices.find((v) => v.lang === "fr-FR");
     }
+
+    console.log(voice);
 };
 
 console.log(voice);

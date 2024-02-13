@@ -43,7 +43,7 @@
             color: darkgoldenrod;
         }
 
-        #lalalangHeader #homeIcon {
+        .homeIcon {
             font-size: 17px;
             font-weight: 600;
         }
@@ -123,10 +123,11 @@
             width: 100%;
             position: fixed;
             bottom: 0;
-            padding: 17px;
+            padding: 24px;
             font-size: 20px;
             margin: 0;
             border-radius: 0;
+            display: none;
         }
 
         .m-20 {
@@ -141,6 +142,11 @@
         .m-y-10 {
             margin-top: 10px;
             margin-bottom: 10px;
+        }
+
+        .m-y-20 {
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         .p-20 {
@@ -230,58 +236,104 @@
             overflow-y: scroll;
             overflow-x: hidden;
         }
+
+        #browserTranslationEnabledTestText {
+            color: #0c1c2c;
+        }
+
+        #setupScreen {
+            height: 100vh;
+            background: #0c1c2c;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        #setupScreen .homeIcon {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .justify-content-center {
+            justify-content: center;
+        }
+
+        #setupInstructions {
+            margin-top: 120px;
+        }
     </style>
     <script src="stories.js"></script>
 </head>
 
 <body>
-    <header id="lalalangHeader">
-        <div id="homeIcon" class="cp">
-            <div class="flex notranslate">
+    <div id="setupScreen">
+        <div class="cp homeIcon">
+            <div class="flex notranslate justify-content-center">
                 <span class="color-gold">La</span>
                 <span>La</span>
             </div>
-            <div><span>La</span><span class="color-gold">ng</span></div>
+            <div class="notranslate"><span>La</span><span class="color-gold">ng</span></div>
         </div>
-        <div id="flashcardsIcon" class="cp">
-            <object data="./assets/icons/flashcards.svg" width="34px" type="image/svg+xml">
-            </object>
+        <div id="setupInstructions">
+            <h2>Tune in to the magic</h2>
+            <div class="m-y-20">Change text to speech language to French in your device settings</div>
+            <di class="m-y-20">Turn on translation from browser options
         </div>
-    </header>
-    <div id="homeContainer">
-        <div id="inputDiv" class="m-20">
-            <textarea id="paragraphInput" placeholder="Enter french text"></textarea>
-            <button onclick="handleUserInput()">La La Lang!</button>
-        </div>
-        <div id="storiesContainer"></div>
+        <div id="browserTranslationEnabledTestText">bonjour</div>
     </div>
-    <div id="translationDiv" class="m-x-20">
-        <div class="notranslate sentenceText" id="learningLangText"></div>
-        <div class="sentenceText" id="knownLangText"></div>
-
-        <div class="collapsible-container">
-            <div class="collapsible-heading notranslate" onclick="toggleCollapsible('collapsibleWikitionary')">+ Wikitonary
-            </div>
-            <div id="collapsibleWikitionary" class="collapsible-content">
-                <div id="wikiPage" class="notranslate wikiPage">
-                    Click on a word to see its Wikitonary page.
+    </div>
+    <div id="appContainer">
+        <header id="lalalangHeader">
+            <div id="homeIcon" class="cp homeIcon">
+                <div class="flex notranslate">
+                    <span class="color-gold">La</span>
+                    <span>La</span>
                 </div>
+                <div class="notranslate"><span>La</span><span class="color-gold">ng</span></div>
+            </div>
+            <div id="flashcardsIcon" class="cp">
+                <object data="./assets/icons/flashcards.svg" width="34px" type="image/svg+xml">
+                </object>
+            </div>
+        </header>
+        <div id="homeContainer">
+            <div id="inputDiv" class="m-20">
+                <textarea id="paragraphInput" placeholder="Enter french text"></textarea>
+                <button onclick="handleUserInput()">La La Lang!</button>
+            </div>
+            <div id="storiesContainer"></div>
+        </div>
+        <div id="translationDiv" class="m-x-20">
+            <div class="notranslate sentenceText" id="learningLangText"></div>
+            <div class="sentenceText" id="knownLangText"></div>
 
+            <div class="collapsible-container">
+                <div class="collapsible-heading notranslate" onclick="toggleCollapsible('collapsibleWikitionary')">+
+                    Wikitonary
+                </div>
+                <div id="collapsibleWikitionary" class="collapsible-content">
+                    <div id="wikiPage" class="notranslate wikiPage">
+                        Click on a word to see its Wikitonary page.
+                    </div>
+
+                </div>
             </div>
+            <div class="collapsible-container">
+                <div class="collapsible-heading notranslate" onclick="toggleCollapsible('collapsibleDictionaryMap')">+
+                    Word
+                    by word
+                    translation
+                </div>
+                <div id="collapsibleDictionaryMap" class="collapsible-content">
+                    <div id="dictionaryMap"></div>
+                </div>
+            </div>
+            <!-- <div id="dictionaryMap"></div> -->
         </div>
-        <div class="collapsible-container">
-            <div class="collapsible-heading notranslate" onclick="toggleCollapsible('collapsibleDictionaryMap')">+ Word by word
-                translation
-            </div>
-            <div id="collapsibleDictionaryMap" class="collapsible-content">
-                <div id="dictionaryMap"></div>
-            </div>
+        <div id="flashcardsContainer" class="notranslate wikiPage">
         </div>
-        <!-- <div id="dictionaryMap"></div> -->
+        <button id="nextBtn">Next</button>
     </div>
-    <div id="flashcardsContainer" class="notranslate wikiPage">
-    </div>
-    <button id="nextBtn">Next</button>
+
 
     <!-- <div id="voices"></div> -->
 
