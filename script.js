@@ -195,7 +195,10 @@ const setVoice = () => {
         voice = voices.find((v) => langIds.indexOf(v.lang) !== -1);
     }
 
-    const voiceList = voices.reduce((acc, { lang, name }) => acc + `<div>${lang} ### ${name}`, '');
+    let voiceList = voices.reduce((acc, { lang, name }) => acc + `<div>${lang} ### ${name}`, '');
+    if (voice) {
+        voiceList += `<div>Voice - ${voice.lang} $$$ ${voice.name}</div>`;
+    }
     const customConsole = document.getElementById('console');
     if (customConsole) {
         customConsole.innerHTML = voiceList;
