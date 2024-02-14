@@ -7,6 +7,7 @@ const homeIcon = document.getElementById("homeIcon");
 const flashcardsIcon = document.getElementById("flashcardsIcon");
 const appContainer = document.getElementById("appContainer");
 const setupScreen = document.getElementById('setupScreen');
+const customConsole = document.getElementById('console');
 
 let displayId = 'HOME'; // HOME, STORY, FLASHCARDS
 appContainer.style.display = "none";
@@ -20,12 +21,28 @@ if (isAndroid) {
     });
 }
 
+// Custom error handling function
+function handleCustomError(errorArgs) {
+    // Perform actions based on the errorArgs
+    customConsole.innerHTML += `<div>${errorArgs.reduce((acc, err) => acc + err, '')}</div>`
+}
+
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const isDevMode = urlSearchParams.has('dev');
 if (isDevMode) {
-    const customConsole = document.getElementById('console');
     customConsole.style.display = "block";
+    // Create a variable to store the original console.error function
+    const originalConsoleError = console.error;
+
+    // Override console.error
+    console.error = function (...args) {
+        // Call the original console.error function
+        originalConsoleError.apply(console, args);
+
+        // Your custom error handling logic here
+        handleCustomError(args);
+    };
 }
 
 
@@ -201,7 +218,7 @@ const setVoice = () => {
     }
     const customConsole = document.getElementById('console');
     if (customConsole) {
-        customConsole.innerHTML = voiceList;
+        customConsole.innerHTML += voiceList;
     }
 }
 setVoice();
