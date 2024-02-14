@@ -182,6 +182,7 @@ const removeFromFlashcard = (word) => {
 
 let voice;
 const setVoice = () => {
+    const langIds = ["fr-FR", "fr_FR"]
     const voices = speechSynthesis.getVoices();
     console.log(voices);
 
@@ -191,7 +192,7 @@ const setVoice = () => {
     );
 
     if (!voice) {
-        voice = voices.find((v) => v.lang === "fr-FR");
+        voice = voices.find((v) => langIds.indexOf(v.lang) !== -1);
     }
 
     const voiceList = voices.reduce((acc, { lang, name }) => acc + `<div>${lang} ### ${name}`, '');
