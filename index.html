@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>La La Lang</title>
     <style>
+        html,
+        body {
+            height: 100%;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -242,9 +247,7 @@
         }
 
         #setupScreen {
-            height: 100vh;
             background: #0c1c2c;
-            padding: 40px;
             box-sizing: border-box;
         }
 
@@ -257,15 +260,20 @@
             justify-content: center;
         }
 
-        #setupInstructions {
-            margin-top: 120px;
+        #setupScreen {
+            height: 100%;
+        }
+
+        .setup-img-refs,
+        #console {
+            display: none;
         }
     </style>
     <script src="stories.js"></script>
 </head>
 
 <body>
-    <div id="setupScreen">
+    <div id="setupScreen" class="p-20">
         <div class="cp homeIcon">
             <div class="flex notranslate justify-content-center">
                 <span class="color-gold">La</span>
@@ -273,13 +281,22 @@
             </div>
             <div class="notranslate"><span>La</span><span class="color-gold">ng</span></div>
         </div>
-        <div id="setupInstructions">
-            <h2>Tune in to the magic</h2>
-            <div class="m-y-20">Change text to speech language to French in your device settings</div>
-            <di class="m-y-20">Turn on translation from browser options
+        <div id="setupInstructions" class="p-20">
+            <h2>Help us create the magic!</h2>
+            <div class="m-y-20">
+                <div>Change text to speech language to French in your device settings</div>
+                <div class="setup-img-refs m-y-10">
+                    <img src="./assets/images/android-text-to-speech.png" height="100" alt="">
+                </div>
+            </div>
+            <div class="m-y-20">
+                <div>Turn on translation from browser options</div>
+                <div class="setup-img-refs m-y-10">
+                    <img src="./assets/images/android-browser-translation.png" height="200" alt="">
+                </div>
+            </div>
+            <div id="browserTranslationEnabledTestText">bonjour</div>
         </div>
-        <div id="browserTranslationEnabledTestText">bonjour</div>
-    </div>
     </div>
     <div id="appContainer">
         <header id="lalalangHeader">
@@ -333,6 +350,7 @@
         </div>
         <button id="nextBtn">Next</button>
     </div>
+    <div id="console"></div>
 
 
     <!-- <div id="voices"></div> -->

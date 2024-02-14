@@ -7,16 +7,54 @@ const homeIcon = document.getElementById("homeIcon");
 const flashcardsIcon = document.getElementById("flashcardsIcon");
 const appContainer = document.getElementById("appContainer");
 const setupScreen = document.getElementById('setupScreen');
+
 let displayId = 'HOME'; // HOME, STORY, FLASHCARDS
-
-
 appContainer.style.display = "none";
+
+const isAndroid = /android/i.test(navigator.userAgent);
+if (isAndroid) {
+    const elements = document.querySelectorAll('.setup-img-refs');
+
+    elements.forEach(element => {
+        element.style.display = 'block';
+    });
+}
+
+
+const urlSearchParams = new URLSearchParams(window.location.search);
+const isDevMode = urlSearchParams.has('dev');
+if (isDevMode) {
+    const customConsole = document.getElementById('console');
+    customConsole.style.display = "block";
+}
+
+
+let sentenceIndex = -1;
+let sentenceArr = [];
+
+const init = () => {
+    const lsSentenceArr = localStorage.getItem("lsSentenceArr") || `[]`;
+    sentenceArr = JSON.parse(lsSentenceArr);
+
+    sentenceIndex = localStorage.getItem("lsSentenceIndex") || -1;
+
+    if (sentenceArr.length) {
+        --sentenceIndex;
+        extractWords();
+        openReader();
+    } else {
+        resetToHome();
+    }
+}
+
+
 
 // check whether browser translation has been turned on
 const browserTranslationCheckInterval = setInterval(() => {
     const browserTranslationEnabledTestText = document.getElementById("browserTranslationEnabledTestText");
-    console.log('checking browser translation', browserTranslationEnabledTestText.innerText.toLocaleLowerCase())
-    if (browserTranslationEnabledTestText.innerText.toLocaleLowerCase() === 'hello') {
+    const translatedWord = browserTranslationEnabledTestText.innerText.toLocaleLowerCase();
+    console.log('checking browser translation', translatedWord)
+    if (['hello', 'good day'].indexOf(translatedWord) !== -1) {
         appContainer.style.display = "block";
         setupScreen.style.display = "none";
         clearInterval(browserTranslationCheckInterval)
@@ -142,29 +180,11 @@ const removeFromFlashcard = (word) => {
     wikiPageActionIcon.addEventListener('click', () => addToFlashcards(word))
 }
 
-const voices = speechSynthesis.getVoices();
 let voice;
-let sentenceIndex = -1;
-let sentenceArr = [];
-
-const init = () => {
-    const lsSentenceArr = localStorage.getItem("lsSentenceArr") || `[]`;
-    sentenceArr = JSON.parse(lsSentenceArr);
-
-    sentenceIndex = localStorage.getItem("lsSentenceIndex") || -1;
-
-    if (sentenceArr.length) {
-        --sentenceIndex;
-        extractWords();
-        openReader();
-    } else {
-        resetToHome();
-    }
-}
-
-speechSynthesis.onvoiceschanged = () => {
+const setVoice = () => {
     const voices = speechSynthesis.getVoices();
     console.log(voices);
+
     const prefferedVoiceNames = ['Microsoft Henri Online (Natural) - French (France)', 'Microsoft Paul - French (France)'];
     voice = voices.find(
         (v) => prefferedVoiceNames.indexOf(v.name) !== -1
@@ -174,10 +194,14 @@ speechSynthesis.onvoiceschanged = () => {
         voice = voices.find((v) => v.lang === "fr-FR");
     }
 
-    console.log(voice);
-};
-
-console.log(voice);
+    const voiceList = voices.reduce((acc, { lang, name }) => acc + `<div>${lang} ### ${name}`, '');
+    const customConsole = document.getElementById('console');
+    if (customConsole) {
+        customConsole.innerHTML = voiceList;
+    }
+}
+setVoice();
+speechSynthesis.onvoiceschanged = setVoice;
 
 const handleUserInput = () => {
     const paragraphInput = document.getElementById("paragraphInput").value;
