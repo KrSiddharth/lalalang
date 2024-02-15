@@ -309,6 +309,9 @@ function extractWords() {
             });
             if (voice) {
                 speechSynthesis.speak(utterThis);
+            } else {
+                SpeechSynthesisUtterance.lang = 'fr-FR';
+                speechSynthesis.speak(utterThis);
             }
         }
         const dictionaryMap = document.getElementById("dictionaryMap");
