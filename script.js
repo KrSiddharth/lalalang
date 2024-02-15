@@ -58,9 +58,9 @@ const init = () => {
     if (sentenceArr.length) {
         --sentenceIndex;
         extractWords();
-        openReader();
+        renderView('STORY');
     } else {
-        resetToHome();
+        renderView('HOME');
     }
 }
 
@@ -71,7 +71,11 @@ const browserTranslationCheckInterval = setInterval(() => {
     const browserTranslationEnabledTestText = document.getElementById("browserTranslationEnabledTestText");
     const translatedWord = browserTranslationEnabledTestText.innerText.toLocaleLowerCase();
     console.log('checking browser translation', translatedWord)
-    if (['hello', 'good day'].indexOf(translatedWord) !== -1) {
+    if (customConsole && translatedWord !== 'bonjour') {
+        customConsole.innerHTML += `<div>Browser translated word - ${translatedWord}</div>`
+    }
+
+    if (['hello', 'good day', 'good morning'].indexOf(translatedWord) !== -1) {
         appContainer.style.display = "block";
         setupScreen.style.display = "none";
         clearInterval(browserTranslationCheckInterval)
@@ -79,8 +83,8 @@ const browserTranslationCheckInterval = setInterval(() => {
     }
 }, 1000)
 
-homeIcon.addEventListener("click", resetToHome);
-flashcardsIcon.addEventListener("click", openFlashcards);
+homeIcon.addEventListener("click", () => renderView('HOME'));
+flashcardsIcon.addEventListener("click", () => renderView('FLASHCARDS'));
 
 function scrollToTop() {
     document.body.scrollTop = 0; // For Safari
@@ -106,7 +110,6 @@ function toggleCollapsible(collapsibleId, keepItOpen = false) {
 }
 
 // populate story tiles
-console.log(laLaLangStories);
 const tilesHTML = laLaLangStories.reduce((acc, curr, index) => {
     return (
         acc +
@@ -122,39 +125,45 @@ const tilesHTML = laLaLangStories.reduce((acc, curr, index) => {
 const storiesContainer = document.getElementById("storiesContainer");
 storiesContainer.innerHTML = tilesHTML;
 
-function resetToHome() {
-    homeContainer.style.display = "block";
+const renderView = (viewId) => {
+    homeContainer.style.display = "none";
     translationDiv.style.display = "none";
     nextBtn.style.display = "none";
     flashcardsContainer.style.display = "none";
-    displayId = 'HOME';
     scrollToTop();
+    switch (viewId) {
+        case 'HOME':
+            displayId = 'HOME';
+            homeContainer.style.display = "block";
+            break;
+        case 'STORY':
+            translationDiv.style.display = "block";
+            nextBtn.style.display = "block";
+            displayId = 'STORY';
+            break;
+        case 'FLASHCARDS':
+            nextBtn.style.display = "block";
+            flashcardsContainer.style.display = "block";
+            displayId = 'FLASHCARDS';
+            setupFlashcards();
+            break;
+        default:
+            break;
+    }
 }
 
-function openReader() {
-    homeContainer.style.display = "none";
-    translationDiv.style.display = "block";
-    nextBtn.style.display = "block";
-    flashcardsContainer.style.display = "none";
-    displayId = 'STORY';
-    scrollToTop();
-}
+let flashcardChooser;
 
-function openFlashcards() {
-    homeContainer.style.display = "none";
-    translationDiv.style.display = "none";
-    nextBtn.style.display = "block";
-    flashcardsContainer.style.display = "block";
-    displayId = 'FLASHCARDS';
-    scrollToTop();
-    renderFlashcardWord();
-}
-
-const renderFlashcardWord = () => {
+const setupFlashcards = () => {
     const lsFlashcards = localStorage.getItem("lsFlashcards") || `[]`;
     const flashcardsArr = JSON.parse(lsFlashcards);
+    flashcardChooser = randomNoRepeats(flashcardsArr);
+    renderFlashcard();
 
-    const word = flashcardsArr[Math.floor(Math.random() * flashcardsArr.length)];
+}
+
+const renderFlashcard = () => {
+    const word = flashcardChooser();
 
     console.log(word);
     if (word) {
@@ -162,7 +171,6 @@ const renderFlashcardWord = () => {
     } else {
         flashcardsContainer.innerHTML = 'Add words to flashcards';
     }
-
 }
 
 
@@ -243,7 +251,7 @@ async function createDictionary(text) {
     sentenceArr = text.split(".");
     localStorage.setItem("lsSentenceArr", JSON.stringify(sentenceArr));
     extractWords();
-    openReader();
+    renderView('STORY');
 }
 
 function extractWords() {
@@ -383,7 +391,7 @@ knownLangText.addEventListener("click", () => {
 
 nextBtn.addEventListener("click", () => {
     if (displayId === 'FLASHCARDS') {
-        renderFlashcardWord();
+        renderFlashcard();
     } else {
         extractWords();
     }
