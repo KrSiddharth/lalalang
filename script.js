@@ -1,4 +1,3 @@
-// const inputDiv = document.getElementById("inputDiv");
 const homeContainer = document.getElementById("homeContainer");
 const translationDiv = document.getElementById("translationDiv");
 const flashcardsContainer = document.getElementById("flashcardsContainer");
@@ -8,6 +7,8 @@ const flashcardsIcon = document.getElementById("flashcardsIcon");
 const appContainer = document.getElementById("appContainer");
 const setupScreen = document.getElementById('setupScreen');
 const customConsole = document.getElementById('console');
+const storiesContainer = document.getElementById("storiesContainer");
+const storyEndContainer = document.getElementById("storyEndContainer");
 
 let displayId = 'HOME'; // HOME, STORY, FLASHCARDS
 appContainer.style.display = "none";
@@ -64,6 +65,21 @@ const init = () => {
     }
 }
 
+const populateStoryTiles = () => {
+    const tilesHTML = laLaLangStories.reduce((acc, curr, index) => {
+        return (
+            acc +
+            `<div class="storyTile" data-story-id=${curr.id} onclick="handleStoryClick(${curr.id})">
+                      <div>
+                        <img src="${curr.imgUrl}" />
+                      </div>
+                      <div class="m-y-10 notranslate">${curr.title.toLowerCase()}</div>
+                    </div>`
+        );
+    }, "");
+    storiesContainer.innerHTML = tilesHTML;
+}
+
 
 
 // check whether browser translation has been turned on
@@ -109,32 +125,18 @@ function toggleCollapsible(collapsibleId, keepItOpen = false) {
     }
 }
 
-// populate story tiles
-const tilesHTML = laLaLangStories.reduce((acc, curr, index) => {
-    return (
-        acc +
-        `<div class="storyTile" data-story-id=${curr.id} onclick="handleStoryClick(${curr.id})">
-                  <div>
-                    <img src="${curr.imgUrl}" />
-                  </div>
-                  <div class="m-y-10 notranslate">${curr.title.toLowerCase()}</div>
-                </div>`
-    );
-}, "");
-
-const storiesContainer = document.getElementById("storiesContainer");
-storiesContainer.innerHTML = tilesHTML;
-
 const renderView = (viewId) => {
     homeContainer.style.display = "none";
     translationDiv.style.display = "none";
     nextBtn.style.display = "none";
     flashcardsContainer.style.display = "none";
+    storyEndContainer.style.display = "none";
     scrollToTop();
     switch (viewId) {
         case 'HOME':
             displayId = 'HOME';
             homeContainer.style.display = "block";
+            populateStoryTiles();
             break;
         case 'STORY':
             translationDiv.style.display = "block";
@@ -146,6 +148,10 @@ const renderView = (viewId) => {
             flashcardsContainer.style.display = "block";
             displayId = 'FLASHCARDS';
             setupFlashcards();
+            break;
+        case 'STORY_END':
+            storyEndContainer.style.display = "block";
+            displayId = 'STORY_END';
             break;
         default:
             break;
@@ -262,46 +268,52 @@ function extractWords() {
     wikiPage.innerHTML = "Click on a word to see its Wikitonary page.";
     const words = [];
     localStorage.setItem("lsSentenceIndex", ++sentenceIndex);
-    const text = sentenceArr[sentenceIndex];
-    let tableHtml = "";
-    let originalWord = "";
-    if (text) {
-        const utterThis = new SpeechSynthesisUtterance(text);
-        utterThis.voice = voice;
-        const learningLangDiv = document.getElementById("learningLangText");
-        const knownLangDiv = document.getElementById("knownLangText");
-        knownLangDiv.classList.add("blurText");
-        knownLangDiv.innerHTML = text;
-        learningLangDiv.innerHTML = text
-            .split(" ")
-            .map((word) => `<span>${word} </span>`)
-            .join("");
-        text.split(/\s+/).forEach((word, j) => {
-            word = word.replace(/[[.,\]]/g, "").toLowerCase();
-            originalWord = word;
-            if (word.indexOf("'") !== -1) {
-                word = word.split("'")[1];
-            }
-            if (
-                // lsWordsArr.indexOf(word) === -1 &&
-                word &&
-                words.indexOf(word) === -1 &&
-                ["!", "?", "-"].indexOf(word) === -1
-            ) {
-                words.push(word);
+    if (sentenceIndex + 1 === sentenceArr.length) {
+        localStorage.setItem("lsSentenceIndex", -1);
+        localStorage.setItem("lsSentenceArr", JSON.stringify([]));
+        renderView('STORY_END');
+    } else {
+        const text = sentenceArr[sentenceIndex];
+        let tableHtml = "";
+        let originalWord = "";
+        if (text) {
+            const utterThis = new SpeechSynthesisUtterance(text);
+            utterThis.voice = voice;
+            const learningLangDiv = document.getElementById("learningLangText");
+            const knownLangDiv = document.getElementById("knownLangText");
+            knownLangDiv.classList.add("blurText");
+            knownLangDiv.innerHTML = text;
+            learningLangDiv.innerHTML = text
+                .split(" ")
+                .map((word) => `<span>${word} </span>`)
+                .join("");
+            text.split(/\s+/).forEach((word, j) => {
+                word = word.replace(/[[.,\]]/g, "").toLowerCase();
+                originalWord = word;
+                if (word.indexOf("'") !== -1) {
+                    word = word.split("'")[1];
+                }
+                if (
+                    // lsWordsArr.indexOf(word) === -1 &&
+                    word &&
+                    words.indexOf(word) === -1 &&
+                    ["!", "?", "-"].indexOf(word) === -1
+                ) {
+                    words.push(word);
 
-                tableHtml += `<div class="column">
+                    tableHtml += `<div class="column">
                 <div class="notranslate cell">${originalWord}</div>
                 <div class="cell">${originalWord}</div>
                 </div>`;
+                }
+            });
+            if (voice) {
+                speechSynthesis.speak(utterThis);
             }
-        });
-        if (voice) {
-            speechSynthesis.speak(utterThis);
         }
+        const dictionaryMap = document.getElementById("dictionaryMap");
+        dictionaryMap.innerHTML = tableHtml;
     }
-    const dictionaryMap = document.getElementById("dictionaryMap");
-    dictionaryMap.innerHTML = tableHtml;
 }
 
 const learningLangDiv = document.getElementById("learningLangText");

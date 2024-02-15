@@ -271,8 +271,13 @@
         }
 
         .setup-img-refs,
-        #console {
+        #console,
+        #storyEndContainer {
             display: none;
+        }
+
+        #storyEndContainer {
+            text-align: center;
         }
     </style>
     <script src="stories.js"></script>
@@ -305,6 +310,7 @@
             <div class="notranslate"><span>La</span><span class="color-gold">ng</span></div>
         </div>
         <div id="setupInstructions" class="p-20">
+            <h1>bonjour</h1>
             <h2>Help us create the magic!</h2>
             <div class="m-y-20">
                 <div>Change text to speech language to French in your device settings</div>
@@ -337,7 +343,7 @@
         <div id="homeContainer">
             <div id="inputDiv" class="m-20">
                 <textarea id="paragraphInput" placeholder="Enter french text"></textarea>
-                <button onclick="handleUserInput()">La La Lang!</button>
+                <button onclick="handleUserInput()" class="notranslate"><span>La La Lang!</span></button>
             </div>
             <div id="storiesContainer"></div>
         </div>
@@ -367,6 +373,10 @@
                 </div>
             </div>
             <!-- <div id="dictionaryMap"></div> -->
+        </div>
+        <div id="storyEndContainer">
+            <h1 class="notranslate">Fin.</h1>
+            <button onclick="renderView('HOME')"><span class="notranslate">Go Back to Home</span></button>
         </div>
         <div id="flashcardsContainer" class="notranslate wikiPage">
         </div>
