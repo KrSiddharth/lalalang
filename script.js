@@ -14,12 +14,17 @@ let displayId = 'HOME'; // HOME, STORY, FLASHCARDS
 appContainer.style.display = "none";
 
 const isAndroid = /android/i.test(navigator.userAgent);
+const isBraveBrowser = (navigator.brave && navigator.brave.isBrave() || false);
 if (isAndroid) {
     const elements = document.querySelectorAll('.setup-img-refs');
 
     elements.forEach(element => {
         element.style.display = 'block';
     });
+}
+
+if (isBraveBrowser) {
+    nextBtn.classList.add('nextBtn-height')
 }
 
 // Custom error handling function
@@ -132,6 +137,9 @@ const renderView = (viewId) => {
     flashcardsContainer.style.display = "none";
     storyEndContainer.style.display = "none";
     scrollToTop();
+    if (viewId !== 'STORY') {
+        speechSynthesis.cancel();
+    }
     switch (viewId) {
         case 'HOME':
             displayId = 'HOME';
@@ -144,7 +152,6 @@ const renderView = (viewId) => {
             displayId = 'STORY';
             break;
         case 'FLASHCARDS':
-            nextBtn.style.display = "block";
             flashcardsContainer.style.display = "block";
             displayId = 'FLASHCARDS';
             setupFlashcards();
@@ -173,6 +180,7 @@ const renderFlashcard = () => {
 
     console.log(word);
     if (word) {
+        nextBtn.style.display = "block";
         renderWikiPage(word, true)
     } else {
         flashcardsContainer.innerHTML = 'Add words to flashcards';
@@ -302,15 +310,14 @@ function extractWords() {
                     words.push(word);
 
                     tableHtml += `<div class="column">
-                <div class="notranslate cell">${originalWord}</div>
-                <div class="cell">${originalWord}</div>
-                </div>`;
+                                    <div class="notranslate cell" onclick="renderWikiPage('${originalWord}')">
+                                        ${originalWord}
+                                    </div>
+                                    <div class="cell">${originalWord}</div>
+                                 </div>`;
                 }
             });
             if (voice) {
-                speechSynthesis.speak(utterThis);
-            } else {
-                SpeechSynthesisUtterance.lang = 'fr-FR';
                 speechSynthesis.speak(utterThis);
             }
         }
@@ -405,6 +412,7 @@ knownLangText.addEventListener("click", () => {
 });
 
 nextBtn.addEventListener("click", () => {
+    speechSynthesis.cancel();
     if (displayId === 'FLASHCARDS') {
         renderFlashcard();
     } else {

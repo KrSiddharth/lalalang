@@ -10,6 +10,51 @@
         html,
         body {
             height: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .m-20 {
+            margin: 20px;
+        }
+
+        .m-x-20 {
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+
+        .m-y-10 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .m-y-20 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .p-20 {
+            padding: 20px;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .color-gold {
+            color: #fe9900;
+        }
+
+        .cp {
+            cursor: pointer;
+        }
+
+        .color-black {
+            color: #000;
+        }
+
+        .color-primary {
+            color: #0c1c2c;
         }
 
         body {
@@ -102,7 +147,7 @@
         }
 
         #translationDiv {
-            margin-bottom: 80px;
+            padding-bottom: 100px;
         }
 
         #dictionaryMap {
@@ -126,48 +171,17 @@
 
         #nextBtn {
             width: 100%;
+            max-width: 600px;
             position: fixed;
             bottom: 0;
-            padding: 24px;
             font-size: 20px;
             margin: 0;
             border-radius: 0;
             display: none;
         }
 
-        .m-20 {
-            margin: 20px;
-        }
-
-        .m-x-20 {
-            margin-right: 20px;
-            margin-left: 20px;
-        }
-
-        .m-y-10 {
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        .m-y-20 {
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        .p-20 {
-            padding: 20px;
-        }
-
-        .flex {
-            display: flex;
-        }
-
-        .color-gold {
-            color: #fe9900;
-        }
-
-        .cp {
-            cursor: pointer;
+        .nextBtn-height {
+            padding: 24px;
         }
 
         #storiesContainer {
@@ -256,10 +270,10 @@
             font-size: 24px;
         }
 
-        #frenchBrowserText {
-            color: #0c1c2c;
+        .frenchBrowserText {
             position: fixed;
             z-index: -1;
+            max-width: 400px;
         }
 
         .justify-content-center {
@@ -279,13 +293,17 @@
         #storyEndContainer {
             text-align: center;
         }
+
+        audio {
+            width: 150px;
+        }
     </style>
     <script src="stories.js"></script>
 </head>
 
 <body>
     <div id="setupScreen" class="p-20">
-        <div id="frenchBrowserText">
+        <div class="frenchBrowserText color-primary">
             <div id="browserTranslationEnabledTestText">bonjour</div>
 
             Un jour, sa mère ayant fait et cuit des galettes, lui dit:
@@ -347,6 +365,25 @@
             <div id="storiesContainer"></div>
         </div>
         <div id="translationDiv" class="m-x-20">
+            <div class="frenchBrowserText color-black">
+                Un jour, sa mère ayant fait et cuit des galettes, lui dit:
+
+                --Va voir comment se porte ta mère-grand; car on m'a dit qu'elle était malade. Porte-lui une galette et
+                ce
+                petit pot de beurre.
+
+                Le Petit Chaperon Rouge partit aussitôt pour aller chez sa mère-grand, qui demeurait dans un autre
+                village.
+                En passant dans un bois, elle rencontra compère le Loup, qui eut bien envie de la manger; mais il n'osa,
+                à
+                cause de quelques bûcherons qui étaient dans la forêt. Il lui demanda où elle allait. La pauvre enfant,
+                qui
+                ne savait pas qu'il était dangereux de s'arrêter à écouter un Loup, lui dit:
+
+                --Je vais voir ma mère-grand, et lui porter une galette avec un pot de beurre, que ma mère lui envoie.
+
+                --Demeure-t-elle bien loin? lui dit le Loup.
+            </div>
             <div class="notranslate sentenceText" id="learningLangText"></div>
             <div class="sentenceText" id="knownLangText"></div>
 
@@ -379,7 +416,7 @@
         </div>
         <div id="flashcardsContainer" class="notranslate wikiPage">
         </div>
-        <button id="nextBtn">Next</button>
+        <button id="nextBtn" class="p-20">Next</button>
     </div>
     <div id="console"></div>
 
