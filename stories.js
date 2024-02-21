@@ -486,3 +486,21 @@ const laLaLangStories = [
     Ils étaient là, et les bourreaux se préparaient à les jeter dans la cuve, lorsque le roi, qu'on n'attendait pas sitôt, entra dans la cour à cheval; il était venu en poste, et demanda, tout étonné, ce que voulait dire cet horrible spectacle. Personne n'osait l'en instruire, quand l'ogresse, enragée de voir ce qu'elle voyait, se jeta elle-même la tête la première dans la cuve, et fut dévorée en un instant par les vilaines bêtes qu'elle y avait fait mettre. Le roi ne laissa pas d'en être fâché, car elle était sa mère; mais il s'en consola bientôt avec sa belle femme et ses enfants.`,
     },
 ];
+
+const BROWSER_TRANSLATION_TRIGGER_TEXT = ` Un jour, sa mère ayant fait et cuit des galettes, lui dit:
+
+--Va voir comment se porte ta mère-grand; car on m'a dit qu'elle était malade. Porte-lui une galette et
+ce
+petit pot de beurre.
+
+Le Petit Chaperon Rouge partit aussitôt pour aller chez sa mère-grand, qui demeurait dans un autre
+village.
+En passant dans un bois, elle rencontra compère le Loup, qui eut bien envie de la manger; mais il n'osa,
+à
+cause de quelques bûcherons qui étaient dans la forêt. Il lui demanda où elle allait. La pauvre enfant,
+qui
+ne savait pas qu'il était dangereux de s'arrêter à écouter un Loup, lui dit:
+
+--Je vais voir ma mère-grand, et lui porter une galette avec un pot de beurre, que ma mère lui envoie.
+
+--Demeure-t-elle bien loin? lui dit le Loup.`;

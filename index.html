@@ -5,8 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" type="image/png" href="assets/icons/logo.png">
+
     <title>La La Lang</title>
     <style>
+        :root {
+            --primary-color: #0c1c2c;
+            --secondary-color: #fe9900;
+        }
+
         html,
         body {
             height: 100%;
@@ -41,8 +48,8 @@
             display: flex;
         }
 
-        .color-gold {
-            color: #fe9900;
+        .color-secondary {
+            color: var(--secondary-color);
         }
 
         .cp {
@@ -54,7 +61,7 @@
         }
 
         .color-primary {
-            color: #0c1c2c;
+            color: var(--primary-color);
         }
 
         body {
@@ -66,7 +73,7 @@
         }
 
         #lalalangHeader {
-            background: #0c1c2c;
+            background: var(--primary-color);
             padding: 14px;
             box-shadow: 0 4px 2px -1px rgba(0, 0, 0, 0.2);
             box-sizing: border-box;
@@ -82,9 +89,9 @@
             border-radius: 4px;
             padding: 10px 20px;
             margin: 10px 0;
-            border: 1px solid #0c1c2c;
-            color: #0c1c2c;
-            background-color: #fe9900;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            background-color: var(--secondary-color);
             font-weight: 700;
             font-size: 17px;
         }
@@ -196,7 +203,7 @@
 
         #storiesContainer .storyTile {
             padding: 10px;
-            background: #0c1c2c;
+            background: var(--primary-color);
             text-align: center;
             margin: 10px;
             box-sizing: border-box;
@@ -205,13 +212,13 @@
         }
 
         .collapsible-container {
-            background-color: #0c1c2c;
+            background-color: var(--primary-color);
             margin-bottom: 14px;
             border-radius: 4px;
         }
 
         .collapsible-heading {
-            color: #fe9900;
+            color: var(--secondary-color);
             padding: 10px;
             cursor: pointer;
             font-weight: 600;
@@ -248,7 +255,7 @@
 
         #flashcardsContainer {
             margin: 14px;
-            background: #0c1c2c;
+            background: var(--primary-color);
             padding: 14px;
             border-radius: 4px;
             height: calc(100vh - 190px);
@@ -257,12 +264,13 @@
         }
 
         #browserTranslationEnabledTestText {
-            color: #0c1c2c;
+            color: var(--primary-color);
         }
 
         #setupScreen {
-            background: #0c1c2c;
+            background: var(--primary-color);
             box-sizing: border-box;
+            min-height: 100%;
         }
 
         #setupScreen .homeIcon {
@@ -278,10 +286,6 @@
 
         .justify-content-center {
             justify-content: center;
-        }
-
-        #setupScreen {
-            height: 100%;
         }
 
         .setup-img-refs,
@@ -322,10 +326,10 @@
         </div>
         <div class="cp homeIcon">
             <div class="flex notranslate justify-content-center">
-                <span class="color-gold">La</span>
+                <span class="color-secondary">La</span>
                 <span>La</span>
             </div>
-            <div class="notranslate"><span>La</span><span class="color-gold">ng</span></div>
+            <div class="notranslate"><span>La</span><span class="color-secondary">ng</span></div>
         </div>
         <div id="setupInstructions" class="p-20">
             <h2>Help us create the magic!</h2>
@@ -338,7 +342,7 @@
             <div class="m-y-20">
                 <div>Turn on translation from browser options</div>
                 <div class="setup-img-refs m-y-10">
-                    <img src="./assets/images/android-browser-translation.png" height="200" alt="">
+                    <img src="./assets/images/android-browser-translation.png" height="300" alt="">
                 </div>
             </div>
         </div>
@@ -347,10 +351,10 @@
         <header id="lalalangHeader">
             <div id="homeIcon" class="cp homeIcon">
                 <div class="flex notranslate">
-                    <span class="color-gold">La</span>
+                    <span class="color-secondary">La</span>
                     <span>La</span>
                 </div>
-                <div class="notranslate"><span>La</span><span class="color-gold">ng</span></div>
+                <div class="notranslate"><span>La</span><span class="color-secondary">ng</span></div>
             </div>
             <div id="flashcardsIcon" class="cp">
                 <object data="./assets/icons/flashcards.svg" width="34px" type="image/svg+xml">
@@ -365,24 +369,7 @@
             <div id="storiesContainer"></div>
         </div>
         <div id="translationDiv" class="m-x-20">
-            <div class="frenchBrowserText color-black">
-                Un jour, sa mère ayant fait et cuit des galettes, lui dit:
-
-                --Va voir comment se porte ta mère-grand; car on m'a dit qu'elle était malade. Porte-lui une galette et
-                ce
-                petit pot de beurre.
-
-                Le Petit Chaperon Rouge partit aussitôt pour aller chez sa mère-grand, qui demeurait dans un autre
-                village.
-                En passant dans un bois, elle rencontra compère le Loup, qui eut bien envie de la manger; mais il n'osa,
-                à
-                cause de quelques bûcherons qui étaient dans la forêt. Il lui demanda où elle allait. La pauvre enfant,
-                qui
-                ne savait pas qu'il était dangereux de s'arrêter à écouter un Loup, lui dit:
-
-                --Je vais voir ma mère-grand, et lui porter une galette avec un pot de beurre, que ma mère lui envoie.
-
-                --Demeure-t-elle bien loin? lui dit le Loup.
+            <div class="frenchBrowserText color-black" id="browserTranslationTriggerTest">
             </div>
             <div class="notranslate sentenceText" id="learningLangText"></div>
             <div class="sentenceText" id="knownLangText"></div>

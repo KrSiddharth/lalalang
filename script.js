@@ -263,6 +263,7 @@ async function createDictionary(text) {
     localStorage.setItem("lsSentenceIndex", -1);
 
     sentenceArr = text.split(".");
+    sentenceArr = sentenceArr.filter(arr => arr);
     localStorage.setItem("lsSentenceArr", JSON.stringify(sentenceArr));
     extractWords();
     renderView('STORY');
@@ -289,6 +290,8 @@ function extractWords() {
             utterThis.voice = voice;
             const learningLangDiv = document.getElementById("learningLangText");
             const knownLangDiv = document.getElementById("knownLangText");
+            const browserTranslationTriggerTest = document.getElementById('browserTranslationTriggerTest');
+            browserTranslationTriggerTest.innerHTML = BROWSER_TRANSLATION_TRIGGER_TEXT;
             knownLangDiv.classList.add("blurText");
             knownLangDiv.innerHTML = text;
             learningLangDiv.innerHTML = text
@@ -335,6 +338,7 @@ async function renderWikiPage(word, isFlashcard = false) {
         wikiPage = flashcardsContainer;
     }
     wikiPage.innerHTML = "Loading...";
+    
     const response = await fetch(
         `https://en.wiktionary.org/api/rest_v1/page/mobile-html/${word}`
     );
@@ -398,6 +402,8 @@ async function renderWikiPage(word, isFlashcard = false) {
             wikiPage.appendChild(header);
             wikiPage.appendChild(frenchSection);
         }
+    } else {
+        wikiPage.innerHTML = "Something went wrong :(";
     }
 }
 
