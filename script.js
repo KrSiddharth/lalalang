@@ -270,8 +270,8 @@ async function createDictionary(text) {
 }
 
 function extractWords() {
-    const existingDictionary = document.getElementById("dictionaryMap");
-    existingDictionary.innerHTML = "";
+    // const existingDictionary = document.getElementById("dictionaryMap");
+    // existingDictionary.innerHTML = "";
 
     const wikiPage = document.getElementById("wikiPage");
     wikiPage.innerHTML = "Click on a word to see its Wikitonary page.";
@@ -324,8 +324,8 @@ function extractWords() {
                 speechSynthesis.speak(utterThis);
             }
         }
-        const dictionaryMap = document.getElementById("dictionaryMap");
-        dictionaryMap.innerHTML = tableHtml;
+        // const dictionaryMap = document.getElementById("dictionaryMap");
+        // dictionaryMap.innerHTML = tableHtml;
     }
 }
 
