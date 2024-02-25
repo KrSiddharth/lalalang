@@ -92,11 +92,11 @@ const browserTranslationCheckInterval = setInterval(() => {
     const browserTranslationEnabledTestText = document.getElementById("browserTranslationEnabledTestText");
     const translatedWord = browserTranslationEnabledTestText.innerText.toLocaleLowerCase();
     console.log('checking browser translation', translatedWord)
-    if (customConsole && translatedWord !== 'bonjour') {
+    if (customConsole) {
         customConsole.innerHTML += `<div>Browser translated word - ${translatedWord}</div>`
     }
 
-    if (['hello', 'good day', 'good morning'].indexOf(translatedWord) !== -1) {
+    if (['dictionary'].indexOf(translatedWord) !== -1) {
         appContainer.style.display = "block";
         setupScreen.style.display = "none";
         clearInterval(browserTranslationCheckInterval)
