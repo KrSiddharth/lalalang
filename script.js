@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         languageSelector.style.display = "flex";
         const langArr = Object.values(LANGUAGE_MAP);
-        const dropdownSelect = getEle('langDropdownSelect');
+        const dropdownSelect = getEle('#langDropdownSelect');
 
         langArr.forEach(({ name, nativeName, abbr }) => {
             const optionElement = document.createElement('option');
