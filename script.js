@@ -1,22 +1,25 @@
-const homeContainer = document.getElementById("homeContainer");
-const translationDiv = document.getElementById("translationDiv");
-const flashcardsContainer = document.getElementById("flashcardsContainer");
-const nextBtn = document.getElementById("nextBtn");
-const homeIcon = document.getElementById("homeIcon");
-const flashcardsIcon = document.getElementById("flashcardsIcon");
-const appContainer = document.getElementById("appContainer");
-const setupScreen = document.getElementById('setupScreen');
-const customConsole = document.getElementById('console');
-const storiesContainer = document.getElementById("storiesContainer");
-const storyEndContainer = document.getElementById("storyEndContainer");
+const homeContainer = getEle("#homeContainer");
+const translationDiv = getEle("#translationDiv");
+const flashcardsContainer = getEle("#flashcardsContainer");
+const nextBtn = getEle("#nextBtn");
+const homeIcon = getEle("#homeIcon");
+const flashcardsIcon = getEle("#flashcardsIcon");
+const appContainer = getEle("#appContainer");
+const setupScreen = getEle('#setupScreen');
+const customConsole = getEle('#console');
+const storiesContainer = getEle("#storiesContainer");
+const storyEndContainer = getEle("#storyEndContainer");
+const languageSelector = getEle("#languageSelector");
+const translationPrompt = getEle("#translationPrompt");
 
 let displayId = 'HOME'; // HOME, STORY, FLASHCARDS
+let narrationVoice;
 appContainer.style.display = "none";
 
 const isAndroid = /android/i.test(navigator.userAgent);
 const isBraveBrowser = (navigator.brave && navigator.brave.isBrave() || false);
 if (isAndroid) {
-    const elements = document.querySelectorAll('.setup-img-refs');
+    const elements = getEle('.setup-img-refs');
 
     elements.forEach(element => {
         element.style.display = 'block';
@@ -51,14 +54,79 @@ if (isDevMode) {
     };
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    const lsSelectedLanguage = localStorage.getItem("lsSelectedLanguage");
+    console.log(lsSelectedLanguage)
+    if (lsSelectedLanguage) {
+        languageSelector.style.display = "none";
+        checkForBrowserTranslation();
+    } else {
+        languageSelector.style.display = "flex";
+        const langArr = Object.values(LANGUAGE_MAP);
+        const dropdownSelect = getEle('langDropdownSelect');
+
+        langArr.forEach(({ name, nativeName, abbr }) => {
+            const optionElement = document.createElement('option');
+            optionElement.value = abbr;
+            optionElement.textContent = `${name} ${nativeName}`;
+            dropdownSelect.appendChild(optionElement);
+        });
+
+        dropdownSelect.addEventListener('change', function () {
+            const selectedValue = dropdownSelect.value;
+            localStorage.setItem("lsSelectedLanguage", selectedValue);
+            languageSelector.style.display = "none";
+
+            const htmlElement = document.documentElement;
+            htmlElement.setAttribute('lang', selectedValue);
+            console.log(htmlElement.getAttribute('lang'));
+
+            checkForBrowserTranslation();
+        });
+    }
+});
+
+
 
 let sentenceIndex = -1;
 let sentenceArr = [];
 
 const init = () => {
+    const lsSelectedLanguage = localStorage.getItem("lsSelectedLanguage");
+    const selectedLangData = LANGUAGE_MAP[lsSelectedLanguage];
+    let voice;
+    const setVoice = () => {
+        const langIds = selectedLangData.langVoiceIds;
+        const voices = speechSynthesis.getVoices();
+        console.log(voices);
+
+        const prefferedVoiceNames = selectedLangData.prefferedVoices;
+        voice = voices.find(
+            (v) => prefferedVoiceNames.indexOf(v.name) !== -1
+        );
+
+        if (!voice) {
+            voice = voices.find((v) => langIds.indexOf(v.lang) !== -1);
+        }
+
+        let voiceList = voices.reduce((acc, { lang, name }) => acc + `<div>${lang} ### ${name}`, '');
+        if (voice) {
+            voiceList += `<div>Voice - ${voice.lang} $$$ ${voice.name}</div>`;
+        }
+        const customConsole = getEle('#console');
+        if (customConsole) {
+            customConsole.innerHTML += voiceList;
+        }
+
+        narrationVoice = voice;
+
+        console.log({ voice });
+    }
+    setVoice();
+    speechSynthesis.onvoiceschanged = setVoice;
+
     const lsSentenceArr = localStorage.getItem("lsSentenceArr") || `[]`;
     sentenceArr = JSON.parse(lsSentenceArr);
-
     sentenceIndex = localStorage.getItem("lsSentenceIndex") || -1;
 
     if (sentenceArr.length) {
@@ -71,7 +139,9 @@ const init = () => {
 }
 
 const populateStoryTiles = () => {
-    const tilesHTML = laLaLangStories.reduce((acc, curr, index) => {
+    const lsSelectedLanguage = localStorage.getItem("lsSelectedLanguage");
+    const stories = LA_LA_LANG_STORIES[lsSelectedLanguage];
+    const tilesHTML = stories.reduce((acc, curr) => {
         return (
             acc +
             `<div class="storyTile" data-story-id=${curr.id} onclick="handleStoryClick(${curr.id})">
@@ -86,34 +156,39 @@ const populateStoryTiles = () => {
 }
 
 
+const checkForBrowserTranslation = () => {
+    // check whether browser translation has been turned on
+    translationPrompt.style.display = "block";
+    const lsSelectedLanguage = localStorage.getItem("lsSelectedLanguage");
+    const translationTriggerText = getEle("#translationTriggerText");
+    const browserTranslationEnabledTestText = getEle("#browserTranslationEnabledTestText");
 
-// check whether browser translation has been turned on
-const browserTranslationCheckInterval = setInterval(() => {
-    const browserTranslationEnabledTestText = document.getElementById("browserTranslationEnabledTestText");
-    const translatedWord = browserTranslationEnabledTestText.innerText.toLocaleLowerCase();
-    console.log('checking browser translation', translatedWord)
-    if (customConsole) {
-        customConsole.innerHTML += `<div>Browser translated word - ${translatedWord}</div>`
-    }
+    const langData = LANGUAGE_MAP[lsSelectedLanguage];
+    translationTriggerText.innerHTML = langData.translationTriggerText;
+    browserTranslationEnabledTestText.innerHTML = langData.testWord;
 
-    if (['dictionary'].indexOf(translatedWord) !== -1) {
-        appContainer.style.display = "block";
-        setupScreen.style.display = "none";
-        clearInterval(browserTranslationCheckInterval)
-        init();
-    }
-}, 1000)
+
+    const browserTranslationCheckInterval = setInterval(() => {
+        const translatedWord = browserTranslationEnabledTestText.innerText.toLocaleLowerCase();
+        console.log('checking browser translation', translatedWord)
+        if (customConsole) {
+            customConsole.innerHTML += `<div>Browser translated word - ${translatedWord}</div>`
+        }
+
+        if (['dictionary'].indexOf(translatedWord) !== -1) {
+            appContainer.style.display = "block";
+            setupScreen.style.display = "none";
+            clearInterval(browserTranslationCheckInterval)
+            init();
+        }
+    }, 1000)
+}
 
 homeIcon.addEventListener("click", () => renderView('HOME'));
 flashcardsIcon.addEventListener("click", () => renderView('FLASHCARDS'));
 
-function scrollToTop() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
-}
-
 function toggleCollapsible(collapsibleId, keepItOpen = false) {
-    var collapsibleContent = document.getElementById(collapsibleId);
+    var collapsibleContent = getEle(`#${collapsibleId}`);
     const isContentVisible = collapsibleContent.style.display === 'block';
     if (isContentVisible && keepItOpen) {
     } else {
@@ -144,6 +219,11 @@ const renderView = (viewId) => {
         case 'HOME':
             displayId = 'HOME';
             homeContainer.style.display = "block";
+
+            const lsSelectedLanguage = localStorage.getItem("lsSelectedLanguage");
+            const learningLangInput = getEle("#learningLangInput");
+            learningLangInput.placeholder = `Enter ${LANGUAGE_MAP[lsSelectedLanguage].name} text`;
+
             populateStoryTiles();
             break;
         case 'STORY':
@@ -196,7 +276,7 @@ const addToFlashcards = (word) => {
         localStorage.setItem("lsFlashcards", JSON.stringify(flashcardsArr));
     }
 
-    const wikiPageActionIcon = document.querySelector('.wikiPageActionIcon');
+    const wikiPageActionIcon = getEle('.wikiPageActionIcon', true);
     wikiPageActionIcon.innerHTML = `<object data="./assets/icons/done.svg" type="image/svg+xml">
 </object>`;
 }
@@ -213,47 +293,23 @@ const removeFromFlashcard = (word) => {
     localStorage.setItem("lsFlashcards", JSON.stringify(flashcardsArr));
     console.log(flashcardsArr);
 
-    const wikiPageActionIcon = document.querySelector('#flashcardsContainer .wikiPageActionIcon');
+    const wikiPageActionIcon = getEle('#flashcardsContainer .wikiPageActionIcon', true);
+
     wikiPageActionIcon.innerHTML = `<object data="./assets/icons/add.svg" type="image/svg+xml">
 </object>`;
     wikiPageActionIcon.addEventListener('click', () => addToFlashcards(word))
 }
 
-let voice;
-const setVoice = () => {
-    const langIds = ["fr-FR", "fr_FR"]
-    const voices = speechSynthesis.getVoices();
-    console.log(voices);
-
-    const prefferedVoiceNames = ['Microsoft Henri Online (Natural) - French (France)', 'Microsoft Paul - French (France)'];
-    voice = voices.find(
-        (v) => prefferedVoiceNames.indexOf(v.name) !== -1
-    );
-
-    if (!voice) {
-        voice = voices.find((v) => langIds.indexOf(v.lang) !== -1);
-    }
-
-    let voiceList = voices.reduce((acc, { lang, name }) => acc + `<div>${lang} ### ${name}`, '');
-    if (voice) {
-        voiceList += `<div>Voice - ${voice.lang} $$$ ${voice.name}</div>`;
-    }
-    const customConsole = document.getElementById('console');
-    if (customConsole) {
-        customConsole.innerHTML += voiceList;
-    }
-}
-setVoice();
-speechSynthesis.onvoiceschanged = setVoice;
-
 const handleUserInput = () => {
-    const paragraphInput = document.getElementById("paragraphInput").value;
-    createDictionary(paragraphInput);
+    const learningLangInput = getEle("#learningLangInput");
+    createDictionary(learningLangInput.value);
 }
 
 
 const handleStoryClick = (storyId) => {
-    const story = laLaLangStories.find(({ id }) => id === storyId);
+    const lsSelectedLanguage = localStorage.getItem("lsSelectedLanguage");
+    const stories = LA_LA_LANG_STORIES[lsSelectedLanguage];
+    const story = stories.find(({ id }) => id === storyId);
     createDictionary(story.text);
 
 }
@@ -270,10 +326,10 @@ async function createDictionary(text) {
 }
 
 function extractWords() {
-    // const existingDictionary = document.getElementById("dictionaryMap");
+    // const existingDictionary = getEle("dictionaryMap");
     // existingDictionary.innerHTML = "";
 
-    const wikiPage = document.getElementById("wikiPage");
+    const wikiPage = getEle("#wikiPage");
     wikiPage.innerHTML = "Click on a word to see its Wikitonary page.";
     const words = [];
     localStorage.setItem("lsSentenceIndex", ++sentenceIndex);
@@ -287,10 +343,10 @@ function extractWords() {
         let originalWord = "";
         if (text) {
             const utterThis = new SpeechSynthesisUtterance(text);
-            utterThis.voice = voice;
-            const learningLangDiv = document.getElementById("learningLangText");
-            const knownLangDiv = document.getElementById("knownLangText");
-            const browserTranslationTriggerTest = document.getElementById('browserTranslationTriggerTest');
+            utterThis.voice = narrationVoice;
+            const learningLangDiv = getEle("#learningLangText");
+            const knownLangDiv = getEle("#knownLangText");
+            const browserTranslationTriggerTest = getEle('#browserTranslationTriggerTest');
             browserTranslationTriggerTest.innerHTML = BROWSER_TRANSLATION_TRIGGER_TEXT;
             knownLangDiv.classList.add("blurText");
             knownLangDiv.innerHTML = text;
@@ -320,25 +376,30 @@ function extractWords() {
                                  </div>`;
                 }
             });
-            if (voice) {
+            if (narrationVoice) {
                 speechSynthesis.speak(utterThis);
             }
         }
-        // const dictionaryMap = document.getElementById("dictionaryMap");
+        // const dictionaryMap = getEle("dictionaryMap");
         // dictionaryMap.innerHTML = tableHtml;
     }
 }
 
-const learningLangDiv = document.getElementById("learningLangText");
+const learningLangDiv = getEle("#learningLangText");
+console.log({ learningLangDiv });
+
+learningLangDiv.addEventListener("click", (event) => {
+    renderWikiPage(event.target.innerHTML);
+});
 
 async function renderWikiPage(word, isFlashcard = false) {
     toggleCollapsible('collapsibleWikitionary', true);
-    let wikiPage = document.getElementById("wikiPage");
+    let wikiPage = getEle("#wikiPage");
     if (isFlashcard) {
         wikiPage = flashcardsContainer;
     }
     wikiPage.innerHTML = "Loading...";
-    
+
     const response = await fetch(
         `https://en.wiktionary.org/api/rest_v1/page/mobile-html/${word}`
     );
@@ -347,7 +408,6 @@ async function renderWikiPage(word, isFlashcard = false) {
         const html = await response.text();
         var parser = new DOMParser();
         var doc = parser.parseFromString(html, "text/html");
-        console.log(doc);
         const body = doc.getElementById("pcs");
         const anchorTags = body.querySelectorAll("a");
         anchorTags.forEach((aTag) => {
@@ -363,19 +423,23 @@ async function renderWikiPage(word, isFlashcard = false) {
         header.innerHTML += `<div  class="wikiPageActionIcon" onclick="${headerIconAction}('${word}')"><object data="./assets/icons/${headerIcon}.svg" type="image/svg+xml">
         <img src="yourfallback.jpg" />
       </object></div>`;
-        const frenchHeadline = body.querySelector("#French");
-        if (frenchHeadline) {
-            const frenchSection = frenchHeadline.closest("section");
-            frenchSection.classList.add("notranslate");
+        const lsSelectedLanguage = localStorage.getItem("lsSelectedLanguage");
+        const selectedLangData = LANGUAGE_MAP[lsSelectedLanguage];
+        const selectedLanguageName = selectedLangData.name;
+
+        const headline = body.querySelector(`#${selectedLanguageName}`);
+        if (headline) {
+            const section = headline.closest("section");
+            section.classList.add("notranslate");
 
             if (isFlashcard) {
-                frenchSection.classList.add("blurText");
+                section.classList.add("blurText");
 
-                frenchSection.addEventListener("click", () => {
-                    frenchSection.classList.remove("blurText");
+                section.addEventListener("click", () => {
+                    section.classList.remove("blurText");
                 });
             }
-            const audios = frenchSection.getElementsByTagName("audio");
+            const audios = section.getElementsByTagName("audio");
             if (audios?.[0]) {
                 let audioLink = audios[0].getAttribute("resource");
                 audioLink = audioLink.replace(".", "");
@@ -390,7 +454,7 @@ async function renderWikiPage(word, isFlashcard = false) {
                     source.setAttribute("src", `https:${src}`);
                 });
             }
-            const imgs = frenchSection.getElementsByTagName("img");
+            const imgs = section.getElementsByTagName("img");
             if (imgs?.[0]) {
                 Array.from(imgs).forEach((img) => {
                     console.log(img);
@@ -400,18 +464,14 @@ async function renderWikiPage(word, isFlashcard = false) {
             }
             wikiPage.innerHTML = "";
             wikiPage.appendChild(header);
-            wikiPage.appendChild(frenchSection);
+            wikiPage.appendChild(section);
         }
     } else {
         wikiPage.innerHTML = "Something went wrong :(";
     }
 }
 
-learningLangDiv.addEventListener("click", (event) => {
-    renderWikiPage(event.target.innerHTML);
-});
-
-const knownLangText = document.getElementById("knownLangText");
+const knownLangText = getEle("#knownLangText");
 
 knownLangText.addEventListener("click", () => {
     knownLangText.classList.remove("blurText");

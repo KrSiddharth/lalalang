@@ -1,4 +1,4 @@
-const laLaLangStories = [
+const frenchStories = [
     {
         id: 111,
         title: "LE PETIT CHAPERON ROUGE",
@@ -486,6 +486,332 @@ const laLaLangStories = [
     Ils étaient là, et les bourreaux se préparaient à les jeter dans la cuve, lorsque le roi, qu'on n'attendait pas sitôt, entra dans la cour à cheval; il était venu en poste, et demanda, tout étonné, ce que voulait dire cet horrible spectacle. Personne n'osait l'en instruire, quand l'ogresse, enragée de voir ce qu'elle voyait, se jeta elle-même la tête la première dans la cuve, et fut dévorée en un instant par les vilaines bêtes qu'elle y avait fait mettre. Le roi ne laissa pas d'en être fâché, car elle était sa mère; mais il s'en consola bientôt avec sa belle femme et ses enfants.`,
     },
 ];
+
+const germanStories = [
+    {
+        id: 111,
+        title: "Rotkäppchen",
+        imgUrl: "https://th.bing.com/th/id/OIG.12WMUmhdnLBW6qsJ.d0l?pid=ImgGn",
+        text: `Es war einmal eine kleine Bauerndirne, die war hübscher, als man jemals eine sah. Ihre Mutter war ganz verliebt in sie und ihre Großmutter noch viel mehr. Diese brave Frau ließ ihr ein rotes Käppchen machen, welches ihr so gut stand, daß man sie überall das »Rotkäppchen« nannte.
+
+        Eines Tages, als ihre Mutter Kuchen gebacken hatte, sagte sie zu ihr:
+        
+        »Geh zu deiner Großmutter und sieh zu, was sie macht, denn man hat mir erzählt, sie sei krank. Nimm ihr einen Kuchen mit und dieses Töpfchen mit Butter!«
+        
+        Rotkäppchen machte sich gleich auf, um zu ihrer Großmutter zu gehen, die in einem anderen Dorfe wohnte. Als sie durch einen Wald kam, begegnete ihr der Gevatter Wolf, der große Lust hatte, sie zu fressen; aber er wagte es nicht wegen der Holzhauer, die in dem Walde waren. Er fragte sie, wohin sie gehe. Das arme Kind, das nicht wußte, wie gefährlich es ist, einen Wolf anzuhören, sagte:
+        
+        »Ich gehe meine Großmutter besuchen und bringe ihr Kuchen und einen Topf Butter, den ihr meine Mutter schickt.«
+        
+        »Wohnt sie weit von hier?« fragte der Wolf.
+        
+        »Oh ja,« antwortete das Rotkäppchen, »noch hinter der Mühle, die Ihr dort in der Ferne seht, in dem ersten Hause des Dorfes.«
+        
+        »Wohlan,« sagte der Wolf, »ich will sie auch besuchen; ich gehe auf diesem Wege hin und du dort auf jenem, wir wollen sehen, wer zuerst da ist.«
+        
+        Der Wolf lief so schnell er konnte und schlug den kürzeren Weg ein, und das kleine Mädchen ging den weiteren Weg; fröhlich pflückte sie Haselnüsse, lief den Schmetterlingen nach und machte Sträuße aus den Blümlein, die sie fand. Es dauerte nicht lange, da war der Wolf an Großmutter Haus angelangt, und er pochte an die Tür: Bum! Bum!
+        
+        »Wer ist da?«
+        
+        »Euer Enkelchen ist es, das Rotkäppchen,« sagte der Wolf, indem er seine Stimme verstellte, »ich bringe Euch einen Kuchen und ein Töpfchen mit Butter, das Euch meine Mutter schickt.«
+        
+        Die gute Großmutter, die krank in ihrem Bette lag, rief ihm zu:
+        
+        »Zieh den Riegel zurück, dann springt das Schloß auf!«
+        
+        Der Wolf zog den Riegel zurück, und die Tür öffnete sich. Er stürzte sich auf die gute Frau und verschlang sie im Handumdrehen, denn er hatte länger als drei Tage nichts mehr gefressen.
+        
+        Der Wolf frißt die Großmutter
+        
+        Dann schloß er die Tür, legte sich in das Bett der Großmutter und wartete auf Rotkäppchen, das bald darauf kam und an die Tür pochte: Bum! Bum!
+        
+        »Wer ist da?«
+        
+        Als Rotkäppchen die laute Stimme des Wolfes hörte, bekam es zuerst Angst; aber sie glaubte, die Großmutter sei erkältet, und antwortete:
+        
+        »Euer Enkelchen ist es, das Rotkäppchen; ich bringe Euch einen Kuchen und ein Töpfchen Butter, das Euch meine Mutter schickt.«
+        
+        Der Wolf rief ihr zu, indem er seine Stimme etwas dämpfte:
+        
+        »Zieh den Riegel zurück, dann springt das Schloß auf!«
+        
+        Rotkäppchen zog den Riegel zurück, und die Tür öffnete sich. Als der Wolf sie eintreten sah, versteckte er sich im Bett unter der Decke und sagte zu ihr:
+        
+        »Stelle den Kuchen und das Töpfchen mit Butter auf den Backtrog und komme zu mir ins Bett!«
+        
+        »Großmutter, was hast du für große Arme?«
+        
+        Rotkäppchen zog sich aus und legte sich mit ins Bett. Sie war erstaunt, wie verändert die Großmutter in ihrem Nachtgewand aussah, und fragte sie:
+        
+        »Großmutter, was hast du für große Arme?«
+        
+        »Damit ich dich besser umarmen kann, mein Kind.«
+        
+        »Großmutter, was hast du für große Beine?«
+        
+        »Damit ich besser laufen kann, mein Kind.«
+        
+        »Großmutter, was hast du für große Ohren?«
+        
+        »Damit ich besser hören kann, mein Kind.«
+        
+        »Großmutter, was hast du für große Augen?«
+        
+        »Damit ich dich besser sehen kann, mein Kind.«
+        
+        »Großmutter, was hast du für große Zähne?«
+        
+        »Damit ich dich besser fressen kann.«
+        
+        Und nachdem er dies gesagt hatte, stürzte der böse Wolf sich auf das Rotkäppchen und fraß es.`
+    },
+    {
+        id: 112,
+        title: "Der gestiefelte Kater",
+        imgUrl:
+            "https://th.bing.com/th/id/OIG.AcaizcOnqtj5TQnWPFuk?w=1024&h=1024&rs=1&pid=ImgDetMain",
+        text: `Es war einmal ein Müller, der hinterließ bei seinem Tode seinen drei Kindern nur eine Mühle, einen Esel und einen Kater. Das Erbe war schnell geteilt. Kein Notar und kein Rechtsanwalt wurde gerufen. Die Kosten hätten auch die ganze Erbschaft aufgezehrt.
+
+        Der Älteste bekam die Mühle und der Zweite den Esel. Der Jüngste bekam den Kater, und er war untröstlich über das armselige Los, das er gezogen hatte.
+        
+        »Meine Brüder,« sagte er, »können sich jetzt anständig ernähren, wenn sie sich zusammen tun. Aber ich kann des Hungers sterben, wenn ich meinen Kater aufgegessen und aus seinem Fell mir eine Weste gemacht habe.«
+        
+        Der Kater hatte diese Worte gehört, aber er ließ sich nichts merken und sagte mit wichtiger und ernster Miene zu seinem Herrn:
+        
+        »Seid nicht traurig, lieber Herr, gebt mir einen Sack und laßt mir ein Paar Stiefeln machen, damit ich in den Wald gehen kann, und dann sollt Ihr sehen, daß Euer Erbteil doch nicht so schlecht ist, wie Ihr glaubt.«
+        
+        Sein Herr gab nicht viel auf diese Rede, aber er hatte oft den Kater bei seiner Jagd auf Ratten und Mäuse beobachtet und er hatte gesehen, wie er sich an den Beinen aufhing, oder wie er sich im Mehl versteckte und sich tot stellte. So hatte er Zutrauen und glaubte in ihm eine Hilfe in seinem Unglück zu haben.
+        
+        Als der Kater das bekommen, worum er gebeten hatte, zog er sich sofort die Stiefeln an, hing sich den Sack um den Hals, nahm den Riemen in die Pfote und ging in ein Dickicht, wo es viele Hasen gab. In den Sack steckte er Klee und Disteln, stellte sich tot und wartete, ob nicht irgendein junger, mit den Ränken dieser Welt noch wenig vertrauter Hase sich in den Sack schliche, um an dem Leckerbissen zu naschen. Kaum hatte er sich hingelegt, kam ein junges und unerfahrenes Häschen und kroch in den Sack. Da zog Meister Kater die Schnüre zu, packte das Häschen und machte ihm ohne Erbarmen den Garaus. Stolz ging er mit seiner Beute zum König und verlangte ihn zu sprechen.
+        
+        Man führte ihn in das Gemach Seiner Majestät, wo er mit einer tiefen Verbeugung eintrat und so zum Könige sprach:
+        
+        »Hier bringe ich Euch einen Hasen, Herr König, den Euch der Marquis von Carabas (so war der Name, den er für seinen Herrn ausgesucht hatte) als Geschenk übersendet.«
+        
+        »Sage deinem Herrn,« antwortete der König, »daß ich ihm danke, und sage ihm, er habe mir eine große Freude bereitet.«
+        
+        Ein zweites Mal verbarg er sich in einem Kornfeld und legte den offenen Sack wieder hin. Und als zwei Rebhühner hineingeschlüpft waren, zog er ihn zu und fing alle beide.
+        
+        Dann ging er zum König und brachte ihm, wie früher den Hasen, die beiden Rebhühner zum Geschenk. Der König nahm auch dieses Wildbret mit Freude entgegen und ließ dem Kater einen Trunk reichen.
+        
+        So brachte er zwei bis drei Monate lang dem König von Zeit zu Zeit irgendein Stück aus der angeblichen Jagdbeute seines Herrn. Als er aber eines Tages erfuhr, daß der König mit seiner Tochter, der schönsten Prinzessin der Welt, am Ufer des Flusses spazieren fahren wollte, da sagte er zu seinem Herrn:
+        
+        »Jetzt folgt meinem Rat, und Euer Glück ist gemacht. Ich zeige Euch eine Stelle am Fluß, da könnt Ihr baden. Das übrige laßt mich machen!«
+        
+        Herr von Carabas tat, wie ihm der Kater riet, ohne zu wissen, wozu es gut sein sollte. Wie er nun badete, kam der König vorüber, und der Kater fing an, aus Leibeskräften zu schreien:
+        
+        »Zu Hilfe. Zu Hilfe! Der Marquis von Carabas ertrinkt!«
+        
+        Der Kater ruft um Hilfe
+        
+        Als der König diese Hilfeschreie hörte, steckte er den Kopf zum Wagenfenster heraus. Sofort erkannte er den Kater, der ihm des öfteren Wildbret gebracht hatte, und befahl seiner Leibwache, dem Marquis von Carabas schleunigst zu Hilfe zu eilen.
+        
+        Während man den armen Marquis aus dem Fluß zog, trat der Kater an den Wagen heran und berichtete dem König, daß Diebe gekommen seien und die Kleider seines badenden Herrn gestohlen hätten, trotzdem er ihnen, so laut er konnte, zugerufen hätte. In Wahrheit hatte der Schlauberger die Kleider unter einem großen Steine versteckt.
+        
+        Sogleich gab der König seinem Kammerdiener den Auftrag, einen seiner schönsten Röcke für den Marquis von Carabas zu holen.
+        
+        Tausend Aufmerksamkeiten erwies der König dem Marquis, und da das schöne Gewand, das er ihm schenkte, seine Gestalt gut zur Geltung brachte, gefiel er der Tochter des Königs sehr, und kaum hatte der Marquis von Carabas zwei bis drei bei aller Ehrfurcht doch ein wenig zärtliche Blicke mit ihr getauscht, da war sie bis über die Ohren in ihn verliebt.
+        
+        Der König lud ihn ein, in den Wagen zu steigen und die Spazierfahrt mitzumachen.
+        
+        Der Kater droht den Bauern
+        
+        Froh über das gute Gelingen seines Planes, ist der Kater vor dem Wagen her. Als er zu Bauern kam, die eine Wiese mähten, rief er ihnen zu:
+        
+        »Ihr guten Leute, wenn Ihr nicht sagt, daß diese Wiese, die Ihr mäht, dem Herrn Marquis von Carabas gehört, so werdet Ihr alle miteinander zu Pastetenfleisch zerhackt!«
+        
+        Richtig fragte sie der König, wem diese Wiese gehöre, die sie mähten.
+        
+        »Dem Herrn Marquis von Carabas«, riefen sie wie mit einer Stimme, denn die Drohung des Katers hatte ihnen angst gemacht.
+        
+        »Da habt Ihr ein schönes Erbe«, wandte sich der König an den Marquis von Carabas.
+        
+        »Ja, Sire,« antwortete der, »die Wiese hier bringt alle Jahre schöne Erträge.«
+        
+        Meister Kater, der immer vorneweg lief, kam zu Schnittern und rief ihnen zu:
+        
+        »Ihr guten Leute, die Ihr da mäht, wenn Ihr nicht sagt, daß diese Kornfelder dem Herrn Marquis von Carabas gehören, so werdet Ihr alle klein gehackt wie Pastetenfleisch!«
+        
+        Als der König einen Augenblick später vorüberfuhr, wollte er wissen, wem die Felder gehörten, die er da sah.
+        
+        »Dem Herrn Marquis von Carabas«, antworteten die Schnitter, und der König und der Marquis hatten ihre Freude an der Antwort.
+        
+        Allen Leuten, die er traf, schärfte der Kater, der immer vor dem Wagen her lief, denselben Spruch ein, und der König wunderte sich sehr über den großen Reichtum des Herrn Marquis von Carabas. Am Ende kam Meister Kater an ein prächtiges Schloß. Das gehörte einem Riesen, dem Reichsten, der weit und breit zu finden war, und alle Felder, bei denen der König vorübergekommen war, gehörten zu dieser Schloßherrschaft.
+        
+        Am Schloß des Riesen
+        
+        Vorsichtig erkundigte sich der Kater, wer der Riese sei und was er treibe. Dann bat er um eine Audienz mit der Begründung, daß er bei seinem Schlosse nicht vorübergehen wolle, ohne sich die Ehre zu geben, seine Aufwartung zu machen.
+        
+        Der Riese empfing ihn so höflich, wie es bei einem Riesen möglich ist, und bat ihn, Platz zu nehmen.
+        
+        Der Kater beim Riesen
+        
+        »Man hat mir versichert,« sagte der Kater, »daß es in Eurer Macht stände, die Gestalt eines jeden Tieres anzunehmen, daß Ihr beispielsweise ein Löwe sein könnt oder ein Elefant.«
+        
+        »Ganz recht,« brummte der Riese, »damit Ihr’s glaubt, will ich jetzt ein Löwe werden.«
+        
+        Der Kater erschrak, als er wirklich einen Löwen vor sich sah, und kletterte schleunigst auf die Dachrinne, nicht ohne Mühe und Gefahr, denn die Stiefel hinderten ihn beim Laufen. Als der Kater sah, daß der Riese wieder seine alte Gestalt angenommen hatte, kletterte er herab und gestand, daß er große Angst gehabt habe.
+        
+        Dann sagte er: »Man hat mir außerdem versichert, was ich aber kaum glauben kann, Ihr könntet Euch auch in die kleinsten Geschöpfe verwandeln, beispielsweise in eine Ratte oder in eine Maus. Ich muß gestehen, ich halte das für ganz ausgeschlossen.«
+        
+        »Ausgeschlossen,« höhnte der Riese, »sieh einmal an«, und in demselben Augenblick verwandelte er sich in eine Maus, die auf dem Fußboden hin und her huschte. Kaum hatte der Kater das bemerkt, da packte er die Maus und fraß sie auf.
+        
+        Inzwischen war der König beim Schlosse des Riesen angekommen und zeigte Lust, hineinzugehen. Als der Kater den Wagen über die Schloßbrücke holpern hörte, lief er hin und sagte zum König:
+        
+        »Eure Majestät heiße ich herzlich willkommen im Schlosse des Herrn Marquis von Carabas!«
+        
+        »Wie, Herr Marquis,« rief der König aus, »dieses Schloß gehört Ihnen? Es gibt nicht leicht etwas Schöneres mit all diesen Gebäuden ringsum. Wenn Sie erlauben, gehen wir hinein.«
+        
+        Der Marquis reichte der Prinzessin die Hand, und sie gingen hinter dem König her, der voranschritt. Sie kamen in einen großen Saal, wo ein herrliches Mahl bereitet war, welches der Riese für seine Freunde bestimmt hatte, die ihn am selben Tage besuchen wollten, die aber nicht gewagt hatten, zu kommen, als sie erfuhren, daß der König da sei.
+        
+        Der König war entzückt von dem vortrefflichen Herrn Marquis von Carabas, und seine Tochter war in ihn verliebt, und wie der König die vielen Reichtümer sah, die dem Herrn Marquis gehörten, da sagte er zwischen dem sechsten und siebten Glase zu ihm:
+        
+        »Herr Marquis, es liegt nur an Ihnen, wenn Sie mein Schwiegersohn werden wollen.«
+        
+        Der Marquis von Carabas verbeugte sich und nahm das ehrenvolle Angebot des Königs an und heiratete die Prinzessin noch an demselben Tage. Der Kater aber wurde ein großer Herr und ging nur noch auf die Mäusejagd, wenn er sich die Zeit vertreiben wollte.`
+    },
+    {
+        id: 114,
+        title: "Dornröschen",
+        imgUrl:
+            "https://th.bing.com/th/id/OIG.y5.50O3aJTBqYjlkt6Ex?w=1024&h=1024&rs=1&pid=ImgDetMain",
+        text: `Es war einmal ein König und eine Königin, die waren traurig, daß sie keine Kinder hatten, so traurig, wie man es nicht sagen kann. Sie reisten in alle Bäder der Welt, legten Gelübde ab, machten Wallfahrten. Nichts wollte helfen. Aber schließlich wurde die Königin dennoch schwanger und gebar ein Mädchen.
+
+        Man feierte eine schöne Taufe und lud zu Patinnen für die kleine Prinzessin alle Feen, die man im Lande finden konnte; es waren deren sieben. Jede sollte ihr ein Geschenk machen, wie es damals Brauch bei den Feen war, damit so die Prinzessin alle nur denkbaren Vorzüge erhielte.
+        
+        Nach der Tauffeierlichkeit kehrte die ganze Gesellschaft in den Palast des Königs zurück, wo ein großes Fest für die Feen gegeben wurde. Man legte vor jede ein herrliches Gedeck mit einem goldenen Besteck: Löffel, Gabel und Messer von feinstem Gold, verziert mit Diamanten und Rubinen. Aber als man sich zu Tisch setzen wollte, trat plötzlich eine alte Fee ein, die man nicht eingeladen hatte, da sie seit mehr als fünfzig Jahren nicht aus ihrem Turm herausgekommen war; man hatte sie für tot oder für verzaubert gehalten.
+        
+        Der König befahl, auch ihr ein Gedeck zu reichen; aber es war kein echt goldenes mehr da. Man hatte für die sieben Feen nur sieben machen lassen. Die Alte fühlt sich beleidigt und murmelte leise drohende Worte.
+        
+        Eine der jungen Feen, welche in ihrer Nähe saß, hörte es, und ahnte, daß sie der kleinen Prinzessin ein unheilvolles Geschenk machen würde. Als man nun von der Tafel aufstand, verbarg sie sich hinter einem Vorhang, damit sie als letzte sprechen könne, um so das Unheil, das jene anrichten würde, nach Kräften wieder gut zu machen.
+        
+        Indessen begannen die Feen, der Prinzessin ihre Gaben darzubringen. Die jüngste wünschte ihr die größte Schönheit von der Welt, die zweite die Klugheit eines Engels, die dritte eine wundervolle Anmut, die vierte Zierlichkeit im Tanz, die fünfte den Gesang der Nachtigall und die sechste Kunstfertigkeit in der Musik.
+        
+        Als die Reihe an die alte Fee kam, sagte sie, wobei sie mehr aus Wut als wegen ihrer Altersschwäche mit dem Kopfe wackelte, die Prinzessin werde sich mit einer Spindel in die Hand stechen und daran sterben. Dieser schreckliche Spruch ließ alle erschaudern, und es gab in der ganzen Gesellschaft niemanden, der nicht hätte weinen müssen.
+        
+        In diesem Augenblick trat die junge Fee hinter dem Vorhange hervor und sprach mit lauter Stimme:
+        
+        »Beruhigt Euch, König und Königin, Eure Tochter soll nicht sterben; ich habe zwar nicht genug Macht, um alles wieder gut zu machen, was die Alte angerichtet hat: die Prinzessin wird sich mit einer Spindel in die Hand stechen, aber anstatt des Todes wird sie in einen tiefen Schlaf fallen, der hundert Jahre dauert. Dann wird der Königssohn kommen und sie erwecken.«
+        
+        Um das durch die Alte angekündigte Unheil abzuwenden, erließ der König alsbald ein Gesetz, das bei Todesstrafe verbot, mit Spindeln zu spinnen, ja überhaupt sie zu besitzen. —
+        
+        Fünfzehn oder sechzehn Jahre später waren der König und die Königin einmal auf eines ihrer Lustschlösser hinaus gefahren. Da geschah es, daß die junge Prinzessin, als sie durch den Palast lief und von Zimmer zu Zimmer sprang, hinauf in ein kleines Turmstübchen kam, in dem eine alte Frau ganz allein saß und ihren Rocken spann. Diese gute Frau hatte von dem Verbote des Königs, mit Spindeln zu spinnen, noch nie etwas gehört.
+        
+        Die Prinzessin und die alte Frau mit der Spindel
+        
+        »Was macht Ihr da, liebe Frau?« sagte die Prinzessin.
+        
+        »Ich spinne, mein gutes Kind«, antwortete die Alte, die aber die Prinzessin nicht kannte.
+        
+        »Wie hübsch das ist,« sprach die Prinzessin, »wie macht Ihr das? Gebt es mir, ich möchte sehen, ob ich es auch so gut kann.«
+        
+        Kaum hatte sie die Spindel ergriffen, da stach sie sich in ihrer lebhaften Unbesonnenheit gerade so, wie es nach dem Spruch der Fee geschehen mußte, in die Hand und fiel ohnmächtig zu Boden.
+        
+        Die gute Alte hielt sie in ihren Armen und rief um Hilfe: von allen Seiten kam man herbei, man spritzte der Prinzessin Wasser ins Gesicht, schnürte ihr Mieder auf, schlug ihr die Hände, rieb ihr die Schläfen mit ungarischem Königin-Wasser: aber nichts rief sie zum Leben zurück. Der König, der auf den Lärm hin herbeigeeilt war, erinnerte sich alsbald an die Weissagungen der Feen und in dem Gedanken, daß es so kommen mußte, wie die Feen es einmal gesagt hatten, ließ er die Prinzessin in das schönste Gemach des Palastes bringen, in ein Bett, das mit Gold und Silber bestickt war.
+        
+        Man hätte sie für ein Englein halten können, so schön war sie; die Ohnmacht hatte ihr die Farben des Lebens nicht genommen, ihre Wangen waren wie Rosen so rot und ihre Lippen wie Korallen; nur ihre Augen waren geschlossen, aber man hörte sie leise atmen und daran sah man, daß sie nicht gestorben war. Der König befahl, man solle sie in Ruhe schlafen lassen, bis die Stunde ihrer Erweckung gekommen sei.
+        
+        Als der Prinzessin dieses Unglück zustieß, war die gute Fee, die ihr das Leben gerettet und sie nur zu einem hundert Jahre langen Schlaf verurteilt hatte, gerade in dem Reiche des Königs Mataquin, zwölftausend Meilen weit weg; aber in einem Augenblicke wurde sie durch einen kleinen Zwerg benachrichtigt, der Siebenmeilenstiefel hatte. Das waren Stiefel, in denen man mit einem einzigen Schritt sieben Meilen zurücklegte. Sofort reiste die Fee ab; und kaum war eine Stunde vergangen, da sah man sie in einem von Drachen gezogenen feurigen Wagen daherkommen.
+        
+        Der König ging ihr entgegen, um ihr beim Aussteigen die Hand zu reichen. Sie billigte alles, was er angeordnet hatte. Doch in ihrer weisen Voraussicht dachte sie daran, wie sehr sich die Prinzessin ängstigen müsse, wenn sie ganz allein in dem alten Schlosse aufwache, und sie tat dieses:
+        
+        Mit ihrem Stabe berührte sie außer dem König und der Königin alles, was in dem Schlosse war, die Haushälterinnen, die Ehrendamen, die Kammerfrauen, die Edelleute, die Offiziere, die Haushofmeister, die Köche und Küchenjungen, die Laufburschen, die Wächter und Türsteher, die Pagen und Diener; sie berührte auch alle Pferde, die in den Ställen standen und die Stallknechte, die großen Hofhunde und den kleinen Puff, das Schoßhündchen der Prinzessin, das neben ihr auf dem Bette lag. Und wie sie alle berührte, so schliefen alle ein, um nicht eher aufzuwachen als ihre Herrin, und um jederzeit bereit zu sein, ihr zu dienen, wenn sie ihrer bedürfe. Auch die Bratspieße, die voll Rebhühner und Fasanen am Feuer steckten, schliefen ein, und sogar das Feuer selbst. Alles das geschah in einem Augenblick, denn die Feen brauchen nicht lange zu ihrer Arbeit.
+        
+        Der König und die Königin küßten noch einmal ihr geliebtes Kind, ohne es dadurch aufzuwecken, verließen dann das Schloß und machten bekannt, daß es verboten sei, sich dem Schlosse zu nähern. Doch dies Verbot war nicht notwendig; denn es wuchsen in einer Viertelstunde um den ganzen Park herum eine solche Menge von großen und kleinen Bäumen, von Brombeerhecken und innig verschlungenem Dornengestrüpp, daß weder Tier noch Mensch hindurch gekonnt hätte; nicht einmal mehr sehen konnte man das Schloß außer den Spitzen der Türme, selbst nicht aus weiter Ferne. Es bestand kein Zweifel, daß auch dies eine Tat der Fee war, damit die Prinzessin während ihres Schlafes nichts von Neugierigen zu befürchten habe. —
+        
+        Der Prinz beim überwucherten Schloß
+        
+        Als die hundert Jahre um waren, kam der Sohn des Königs, der damals regierte, und der einer andern Familie als die schlafende Prinzessin entstammte, auf der Jagd in diese Gegend und fragte, was für Türme es seien, die er über dem dichten Walde erblicke. Jeder antwortete ihm so, wie er gehört hatte: die einen sagten, es sei ein altes Schloß, in dem die Geister spukten, die andern, daß alle Zauberer der Gegend dorthin zum Sabbath kämen. Die Meinung der meisten aber war, es wohne dort ein Menschenfresser und alle Kinder brächte er dorthin, die er erwischen könne, um sie in Ruhe und sicher vor Verfolgern zu verzehren, da nur er allein die Macht habe, sich einen Durchgang durch den Wald zu bahnen.
+        
+        Der Prinz wußte nicht, wem er Glauben schenken sollte, als ein alter Bauer das Wort ergriff und sprach:
+        
+        »Mein Prinz, es ist mehr als fünfzig Jahre her, daß ich meinen Vater erzählen hörte, es gäbe in dem Schlosse eine Prinzessin, schöner, als man jemals eine sah. Hundert Jahre müsse sie schlafen, dann würde sie erweckt von einem Prinzen, für den sie bestimmt sei.«
+        
+        Der Prinz erreicht das verwunschene Schloß
+        
+        Feuer und Flamme war der junge Prinz bei diesen Worten. Ohne zu schwanken glaubte er, diesem schönen Abenteuer ein Ende bereiten zu müssen, und von Liebe und Ehrgeiz getrieben, beschloß er, auf der Stelle zu sehen, was daran Wahres sei. Kaum näherte er sich dem Walde, da gingen alle die großen Bäume, die Brombeersträucher und Dornenhecken von selbst auseinander und ließen ihn hindurch. Er näherte sich dem Schloß, das er am Ende einer großen Allee erblickte, und ging hinein. Er war ein wenig erstaunt, als er sah, daß niemand von seinen Leuten ihm hatte folgen können, da der Wald sich wieder geschlossen hatte, nachdem er hindurchgegangen. Aber er ließ sich nicht abhalten weiterzugehen, denn ein junger Prinz, der liebt, ist immer tapfer. Er trat in einen großen Vorhof, wo alles, was er zunächst erblickte, dazu angetan war, ihn zu erschrecken. Es war eine furchterregende Stille; ein Bild des Todes bot sich ihm. Ausgestreckt lagen die Leiber von Menschen und Tieren, die gestorben schienen. Doch erkannte er sehr bald an der sinnigen Nase und dem roten Gesicht der Türsteher, daß sie nur schliefen, und ihre Becher, in denen sie noch ein paar Tropfen Wein hatten, zeigten ihm deutlich genug, daß sie beim Trinken eingeschlafen waren. Er ging weiter durch einen großen, marmorgepflasterten Hof, stieg eine Treppe hinauf und trat in eine Wachtstube, wo die Soldaten mit Karabiner auf Schulter in Reih und Glied standen und um die Wette schnarchten. Er durcheilte mehrere Zimmer voller Edelleute und Damen, die alle schliefen, teils stehend, teils sitzend. Dann trat er in ein goldenes Gemach und sah auf einem Bette, dessen Vorhänge nach allen Seiten geöffnet waren, das schönste Bild, das er jemals gesehen: eine Prinzessin von etwa fünfzehn oder sechzehn Jahren, deren herrliche Schönheit in göttlichem Glanze strahlte.
+        
+        Die schlafende Dienerschaft des Schlosses
+        
+        Zitternd und voller Bewunderung näherte er sich ihr und fiel vor ihr aufs Knie. In diesem Augenblick erwachte die Prinzessin: das Ende des Zauberschlafes war gekommen. Sie sah ihn mit zärtlicheren Augen an, als ein erster Blick es zu erlauben schien, und sprach:
+        
+        »Seid Ihr es, mein Prinz? Ihr ließet lange auf Euch warten.«
+        
+        Der Prinz und das erwachende Dornröschen
+        
+        Der Prinz war entzückt von diesen Worten und mehr noch von der Art, wie sie gesprochen wurden. Er wußte nicht, wie er ihr seine Freude und Dankbarkeit beweisen könne und versicherte, daß er sie mehr liebe als sich selber. Seine Rede war schlecht gesetzt und gefiel deshalb um so mehr; denn je geringer die Beredsamkeit, um so größer die Liebe. Er war verlegener als sie, denn sie hatte ja lange Zeit gehabt, um darüber nachzudenken, was sie ihm sagen würde. Man braucht sich darüber nicht zu wundern, denn obwohl die Geschichte davon nichts erzählt, scheint es so, als ob die gute Fee dafür gesorgt habe, daß sie sich während des langen Schlafes an schönen Gedanken erfreuen könne. Vier Stunden lang unterhielten sich die beiden miteinander und sie hatten sich noch nicht die Hälfte von dem gesagt, was sie auf dem Herzen hatten.
+        
+        Indessen war mit der Prinzessin der ganze Palast aufgewacht. Ein jeder versah wieder seinen Dienst; aber da nicht alle so verliebt waren, hatten sie schrecklichen Hunger. Eine der Ehrendamen, die wie die andern hungerte, wurde schließlich ungeduldig und rief laut der Prinzessin zu, das Essen sei angerichtet. Der Prinz half der Prinzessin, als sie sich erhob. Sie war mit einem herrlichen Gewande angetan; aber er hütete sich wohl, ihr zu sagen, daß sie gekleidet sei wie eine Großmutter und einen altmodischen Kragen umhabe: aber trotzdem war sie nicht weniger schön.
+        
+        Sie gingen in einen Spiegelsaal und speisten dort, von den Offizieren der Prinzessin bedient. Die Geigen und Hoboen spielten alte Melodien, die wunderschön klangen, obwohl man sie seit hundert Jahren nicht mehr gespielt hatte. Nach der Tafel traute sie, ohne Zeit zu verlieren, der Hofkaplan in der Schloßkapelle, und die Ehrendame zog ihnen den Vorhang zu.
+        
+        Sie schliefen nicht lange, denn die Prinzessin war nicht sehr müde, und der Prinz verließ sie gegen Morgen, um in die Stadt zurückzukehren, wo sein Vater in Sorge um ihn sein mußte. Der Prinz erzählte ihm, er habe sich auf der Jagd im Walde verirrt, in der Hütte eines Köhlers übernachtet und von ihm Schwarzbrot und Käse zum Essen bekommen. Der König, sein Vater, war ein guter Mann und glaubte es. Aber seine Mutter ließ sich nicht so leicht überzeugen. Als sie sah, daß er fast täglich auf die Jagd ging und daß er nie um eine Entschuldigung verlegen war, wenn er zwei oder drei Nächte draußen geschlafen hatte, zweifelte sie nicht mehr, daß er irgendeine Liebschaft habe. Mehr als zwei Jahre lebte der Prinz so mit der Prinzessin; und sie bekamen zwei Kinder. Das älteste, ein Mädchen, nannten sie Morgenrot und das zweite, einen Knaben, Tageshell, weil er fast noch schöner war als seine Schwester.
+        
+        Um hinter sein Geheimnis zu kommen, sagte die Königin öfters zu ihrem Sohne, er solle doch mit seinem Leben zufrieden sein.
+        
+        Doch er wagte nicht, sich ihr anzuvertrauen, denn er fürchtete sich vor ihr, obgleich er sie liebte. Sie entstammte nämlich dem Geschlechte der Menschenfresser, und der König hatte sie nur geheiratet, weil sie so reich war.
+        
+        Man sprach sogar am Hofe ganz leise davon, daß sie immer noch eine Neigung zum Menschenfressen habe, und daß sie sich mit aller Gewalt zurückhalten müsse, wenn sie kleine Kinder sähe, damit sie sich nicht auf sie stürze. Deshalb wollte der Prinz ihr nichts sagen.
+        
+        Nach zwei Jahren starb der König, und der Prinz folgte ihm nach. Jetzt machte er seine Heirat bekannt und ließ unter großen Festlichkeiten seine Frau als Königin auf sein Schloß holen. Ein herrlicher Empfang wurde ihr in der Hauptstadt bereitet, als sie mit den beiden Kindern einzog.
+        
+        Es trug sich zu, daß der König gegen den Kaiser Cantalabutte, seinen Nachbarn, in den Krieg ziehen mußte. Er übergab die Regierung der Königin Mutter, und ließ Frau und Kinder in ihrer Obhut zurück.
+        
+        Den ganzen Sommer mußte er im Felde bleiben. Als er aber abgereist war, schickte die Königin ihre Schwiegertochter und die Kinder in ein Landhaus im Walde, um ungestörter ihrer fürchterlichen Lust zu fröhnen. Einige Tage darauf begab sie sich selbst dorthin und sagte eines Abends zu ihrem Haushofmeister:
+        
+        »Morgen will ich zum Mittagessen die kleine Morgenrot verspeisen!«
+        
+        »Um Gottes Willen, Königliche Hoheit«, rief der Haushofmeister.
+        
+        »Ich will es«, sagte die Königin; und sie sagte es, wie ein Menschenfresser, der Lust hat, frisches Fleisch zu essen. »Ich will sie sogar mit Roberttunke essen!«
+        
+        Als der arme Mann sah, daß man mit einer Menschenfresserin nicht gut spaßen könne, nahm er sein großes Messer in die Hand und ging hinauf in das Zimmer der kleinen Morgenrot. Diese war gerade vier Jahre alt, und sie warf sich tanzend und lachend ihm an den Hals und bat ihn um Süßigkeiten. Da fing er an zu weinen, und das Messer fiel ihm aus der Hand. Er ging hinunter in den Stall, schlachtete ein Lämmchen und bereitete es mit einer so guten Tunke zu, daß seine Herrin ihm versicherte, sie habe noch nie etwas so Gutes gegessen.
+        
+        Gleichzeitig hatte er die kleine Morgenrot fortgetragen und seiner Frau übergeben, damit sie dieselbe in seinem Hause verberge, das hinter dem Stalle lag.
+        
+        Acht Tage später sagte die Königin zu ihrem Haushofmeister:
+        
+        »Ich will den kleinen Tageshell zum Abendbrot essen!«
+        
+        Er erwiderte nichts und war fest entschlossen, sie ebenso wie das erstemal zu täuschen.
+        
+        Er suchte den kleinen Tageshell und fand ihn mit einem Florett in der Hand, womit er gegen einen dicken Affen Krieg führte; dabei war er erst drei Jahre alt.
+        
+        Auch ihn brachte er zu seiner Frau, damit sie ihn mit der kleinen Morgenrot verberge, und an seiner Stelle bereitete er ein zartes Zicklein, welches die Menschenfresserin äußerst wohlschmeckend fand.
+        
+        Bis dahin war alles gut gegangen. Aber eines Abends sagte die böse Königin zum Haushofmeister:
+        
+        »Ich will die Königin in derselben Tunke wie ihre Kinder essen!«
+        
+        Da verzweifelte der arme Haushofmeister, weil er nicht glaubte, sie noch einmal täuschen zu können. Denn die junge Königin war über zwanzig Jahre alt, ganz abgesehen von den hundert Jahren, die sie geschlafen hatte. Ihre Haut war ein wenig spröde, obwohl sie schön und weiß war. Aber wie sollte man unter den Tieren eines finden, das eine ebenso spröde Haut hatte?
+        
+        Deshalb faßte er, um sein eigenes Leben zu retten, den Entschluß, der Königin den Hals abzuschneiden. Er stieg hinauf in ihr Zimmer, und war fest entschlossen, es diesmal anders zu machen. Er brachte sich in Wut und trat mit dem Dolch in der Hand in das Zimmer der jungen Königin. Trotzdem wollte er sie nicht überfallen und er erzählte ihr mit allem Respekt von dem Auftrag, den er von der Königin Mutter erhalten hatte.
+        
+        »Tut, was Euch befohlen!« sagte die Königin zu ihm und hielt ihren Kopf hin. »Ich werde meine Kinder wiedersehen, meine armen Kinder, die ich so geliebt habe!«
+        
+        Sie hielt ihre Kinder nämlich für tot, seitdem man sie entführt hatte, ohne ihr etwas zu sagen.
+        
+        »Nein, gnädige Frau,« antwortete der Haushofmeister ganz gerührt. »Ihr sollt nicht sterben. Ihr werdet dennoch Eure Kinder wiedersehen! In meinem Hause werdet Ihr sie sehen, wo ich sie verborgen habe. Ich will nochmals die Königin täuschen und ihr an Eurer Stelle einen jungen Hirsch zu essen geben.«
+        
+        Dann führte er sie in seine Wohnung und ließ sie küssend und weinend bei ihren Kindern. Er selbst bereitete eine Hindin zu, und die Königin verzehrte sie mit demselben Appetit zum Abendessen, als wenn es die junge Königin gewesen wäre.
+        
+        Sie war sehr befriedigt von ihren Grausamkeiten und nahm sich vor, dem König bei seiner Rückkehr zu sagen, daß wütende Wölfe seine Frau, die Königin, und seine beiden Kinder gefressen hätten. —
+        
+        Eines Abends, als sie wie gewöhnlich in den Höfen des Schlosses herumstreifte, um dort nach frischem Fleisch auszuschauen, hörte sie in einem Kellerzimmer den kleinen Tageshell, der weinte, weil ihn seine Mutter wegen einer Ungehorsamkeit schlagen wollte; und sie hörte auch die kleine Morgenrot, wie sie für ihren Bruder um Verzeihung bat.
+        
+        Die Menschenfresserin erkannte die Stimme der Königin und ihrer Kinder und geriet in Zorn, weil man sie getäuscht hatte.
+        
+        Am nächsten Tage in der Frühe befahl sie mit schrecklicher Stimme, die alle erzittern machte, man solle in die Mitte des Hofes einen großen Bottich bringen. Diesen Bottich ließ sie mit Vipern, Kröten, Nattern und Schlangen füllen, um die Königin und ihre Kinder, den Haushofmeister, seine Frau und seine Dienerin hineinzuwerfen. Sie gab den Befehl, sie herbeizuführen, die Hände auf den Rücken gebunden.
+        
+        So standen sie da, und der Henker machte sich daran, sie in den Bottich zu werfen. In diesem Augenblick kam der König, den man nicht so schnell erwartet hatte, in den Hof geritten; denn er war auf schnellstem Wege zurückgekehrt. Ganz erstaunt fragte er, was denn das schreckliche Schauspiel zu bedeuten habe.
+        
+        Niemand wagte, es ihm zu sagen. Die Menschenfresserin aber stürzte sich in ihrer Wut über das, was sie sah, kopfüber in den Bottich und war in einem Augenblick von den schrecklichen Tieren, die sie selbst hineingesetzt hatte, verschlungen. Der König war traurig darüber, denn es war seine Mutter. Aber er tröstete sich bald mit seiner schönen Frau und seinen Kindern.`
+    }
+];
+
+const LA_LA_LANG_STORIES = {
+    fr: frenchStories,
+    de: germanStories
+}
 
 const BROWSER_TRANSLATION_TRIGGER_TEXT = ` Un jour, sa mère ayant fait et cuit des galettes, lui dit:
 

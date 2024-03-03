@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 
 <head>
     <meta charset="UTF-8" />
@@ -264,6 +264,8 @@
             overflow-x: hidden;
         }
 
+        /* Setup Screen Styling Start */
+
         #browserTranslationEnabledTestText {
             color: var(--primary-color);
         }
@@ -279,10 +281,45 @@
             font-size: 24px;
         }
 
-        .frenchBrowserText {
+        #translationPrompt,
+        #languageSelector {
+            display: none;
+        }
+
+        #languageSelector {
+            margin: 100px auto;
+            justify-content: center;
+        }
+
+        #langDropdownSelect {
+            padding: 10px;
+            background-color: var(--secondary-color);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 4px;
+        }
+
+        #langDropdownSelect option {
+            padding: 10px;
+            background-color: #fff;
+            color: #333;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 0;
+        }
+
+        #langDropdownSelect option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .learningLangBrowserText {
             z-index: -1;
             max-width: 400px;
         }
+
+        /* Setup Screen Styling End */
 
         .justify-content-center {
             justify-content: center;
@@ -315,36 +352,29 @@
             <div class="notranslate"><span>La</span><span class="color-secondary">ng</span></div>
         </div>
         <div id="setupInstructions" class="p-20">
-            <h2>Help us create the magic!</h2>
-            <div class="m-y-20">
+            <div id="languageSelector">
+                <select id="langDropdownSelect">
+                    <option value="" disabled selected>Select the language</option>
+                </select>
+            </div>
+            <div id="translationPrompt">
+                <h2>Help us create the magic!</h2>
+                <div class="m-y-20">
+                    <div>Turn on translation from browser options</div>
+                    <div class="setup-img-refs m-y-10">
+                        <img src="./assets/images/android-browser-translation.png" height="300" alt="">
+                    </div>
+                </div>
+                <div id="browserTranslationEnabledTestText">dictionnaire</div>
+                <div class="learningLangBrowserText color-primary" id="translationTriggerText">
+                </div>
+            </div>
+            <!-- <div class="m-y-20">
                 <div>Change text to speech language to French in your device settings</div>
                 <div class="setup-img-refs m-y-10">
                     <img src="./assets/images/android-text-to-speech.png" height="100" alt="">
                 </div>
-            </div>
-            <div class="m-y-20">
-                <div>Turn on translation from browser options</div>
-                <div class="setup-img-refs m-y-10">
-                    <img src="./assets/images/android-browser-translation.png" height="300" alt="">
-                </div>
-            </div>
-        </div>
-        <div class="frenchBrowserText color-primary">
-            <div id="browserTranslationEnabledTestText">dictionnaire</div>
-
-            Un jour, sa mère ayant fait et cuit des galettes, lui dit:
-
-            --Va voir comment se porte ta mère-grand; car on m'a dit qu'elle était malade. Porte-lui une galette et ce
-            petit pot de beurre.
-
-            Le Petit Chaperon Rouge partit aussitôt pour aller chez sa mère-grand, qui demeurait dans un autre village.
-            En passant dans un bois, elle rencontra compère le Loup, qui eut bien envie de la manger; mais il n'osa, à
-            cause de quelques bûcherons qui étaient dans la forêt. Il lui demanda où elle allait. La pauvre enfant, qui
-            ne savait pas qu'il était dangereux de s'arrêter à écouter un Loup, lui dit:
-
-            --Je vais voir ma mère-grand, et lui porter une galette avec un pot de beurre, que ma mère lui envoie.
-
-            --Demeure-t-elle bien loin? lui dit le Loup.
+            </div> -->
         </div>
     </div>
     <div id="appContainer">
@@ -363,7 +393,7 @@
         </header>
         <div id="homeContainer">
             <div id="inputDiv" class="m-20">
-                <textarea id="paragraphInput" placeholder="Enter french text"></textarea>
+                <textarea id="learningLangInput"></textarea>
                 <button onclick="handleUserInput()" class="notranslate"><span>La La Lang!</span></button>
             </div>
             <div id="storiesContainer"></div>
@@ -394,7 +424,7 @@
                 </div>
             </div> -->
             <!-- <div id="dictionaryMap"></div> -->
-            <div class="frenchBrowserText color-black" id="browserTranslationTriggerTest">
+            <div class="learningLangBrowserText color-black" id="browserTranslationTriggerTest">
             </div>
         </div>
         <div id="storyEndContainer">
@@ -409,6 +439,7 @@
 
 
     <!-- <div id="voices"></div> -->
+    <script src="./langMap.js"></script>
     <script src="./utils.js"></script>
     <script src="./script.js">
     </script>
