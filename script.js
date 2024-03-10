@@ -56,8 +56,10 @@ if (isDevMode) {
 
 document.addEventListener('DOMContentLoaded', function () {
     const lsSelectedLanguage = localStorage.getItem("lsSelectedLanguage");
+    const htmlElement = document.documentElement;
     console.log(lsSelectedLanguage)
     if (lsSelectedLanguage) {
+        htmlElement.setAttribute('lang', lsSelectedLanguage);
         languageSelector.style.display = "none";
         checkForBrowserTranslation();
     } else {
@@ -76,8 +78,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const selectedValue = dropdownSelect.value;
             localStorage.setItem("lsSelectedLanguage", selectedValue);
             languageSelector.style.display = "none";
-
-            const htmlElement = document.documentElement;
             htmlElement.setAttribute('lang', selectedValue);
             console.log(htmlElement.getAttribute('lang'));
 
@@ -112,6 +112,9 @@ const init = () => {
         let voiceList = voices.reduce((acc, { lang, name }) => acc + `<div>${lang} ### ${name}`, '');
         if (voice) {
             voiceList += `<div>Voice - ${voice.lang} $$$ ${voice.name}</div>`;
+        } else {
+            const learningLanguageDisplayTexts = getEle('.learningLanguageDisplayText');
+            learningLanguageDisplayTexts.forEach(ele => ele.innerHTML = selectedLangData.name)
         }
         const customConsole = getEle('#console');
         if (customConsole) {
@@ -485,3 +488,17 @@ nextBtn.addEventListener("click", () => {
         extractWords();
     }
 });
+
+const modal = getEle('#modal');
+const overlay = getEle('#overlay');
+
+function openModal() {
+    modal.style.display = 'block';
+    overlay.style.display = 'block';
+}
+
+function closeModal() {
+    modal.style.display = 'none';
+    overlay.style.display = 'none';
+}
+

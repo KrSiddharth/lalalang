@@ -338,6 +338,44 @@
         audio {
             width: 150px;
         }
+
+        #narrationPrompt {
+            font-size: 14px;
+            color: grey;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        #modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            color: #343a40;
+            border-radius: 4px;
+        }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 900;
+        }
+
+        .text-right {
+            text-align: right;
+        }
     </style>
     <script src="stories.js"></script>
 </head>
@@ -369,12 +407,6 @@
                 <div class="learningLangBrowserText color-primary" id="translationTriggerText">
                 </div>
             </div>
-            <!-- <div class="m-y-20">
-                <div>Change text to speech language to French in your device settings</div>
-                <div class="setup-img-refs m-y-10">
-                    <img src="./assets/images/android-text-to-speech.png" height="100" alt="">
-                </div>
-            </div> -->
         </div>
     </div>
     <div id="appContainer">
@@ -401,7 +433,6 @@
         <div id="translationDiv" class="m-x-20">
             <div class="notranslate sentenceText" id="learningLangText"></div>
             <div class="sentenceText" id="knownLangText"></div>
-
             <div class="collapsible-container">
                 <div class="collapsible-heading notranslate" onclick="toggleCollapsible('collapsibleWikitionary')">+
                     Wikitonary
@@ -413,6 +444,9 @@
 
                 </div>
             </div>
+            <div id="narrationPrompt" class="cp" onclick="openModal()">Narration not working? Change text to speech language to <span
+                    class="learningLanguageDisplayText"></span> in your device
+                settings. <span class="underline">How?</span></div>
             <!-- <div class="collapsible-container">
                 <div class="collapsible-heading notranslate" onclick="toggleCollapsible('collapsibleDictionaryMap')">+
                     Word
@@ -434,6 +468,15 @@
         <div id="flashcardsContainer" class="notranslate wikiPage">
         </div>
         <button id="nextBtn" class="p-20">Next</button>
+        <div id="modal">
+            <div>Change text to speech language to <span class="learningLanguageDisplayText"></span> in your device
+                settings</div>
+            <div class="m-y-10">
+                <img src="./assets/images/android-text-to-speech.png" height="100" alt="">
+            </div>
+            <div class="text-right"><button onclick="closeModal()" class="cp">Close</button></div>
+        </div>
+        <div id="overlay" onclick="closeModal()"></div>
     </div>
     <div id="console"></div>
 
