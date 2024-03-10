@@ -110,11 +110,14 @@ const init = () => {
         }
 
         let voiceList = voices.reduce((acc, { lang, name }) => acc + `<div>${lang} ### ${name}`, '');
+        const narrationPrompt = getEle('#narrationPrompt');
         if (voice) {
             voiceList += `<div>Voice - ${voice.lang} $$$ ${voice.name}</div>`;
+            narrationPrompt.style.display = "none";
         } else {
+            narrationPrompt.style.display = "block";
             const learningLanguageDisplayTexts = getEle('.learningLanguageDisplayText');
-            learningLanguageDisplayTexts.forEach(ele => ele.innerHTML = selectedLangData.name)
+            learningLanguageDisplayTexts.forEach(ele => ele.innerHTML = ` ${selectedLangData.name} `)
         }
         const customConsole = getEle('#console');
         if (customConsole) {
